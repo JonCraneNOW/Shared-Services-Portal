@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_esm_portal.CrossPortalHeader</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CrossPortalHeader</name>
+        <script><![CDATA[var CrossPortalHeader = (function(Domain) {
+
+	function getContent() {
+		var domains = [];
+
+		Domain.addActiveQuery();
+		Domain.orderBy('order');
+		Domain.query();
+
+		while (Domain.next()){
+			if (Domain.portal.canRead()){
+				var domain = {
+					name : Domain.name + '',
+					abbreviated_name : Domain.abbreviated_name + '',
+					background_image : Domain.background_image + '',
+					description : Domain.description + '',
+					glyph : Domain.glyph + '',
+					glyph_background_color : Domain.glyph_background_color + '',
+					portal_page : Domain.portal_page.getDisplayValue(),
+					record_overview : Domain.record_overview.getDisplayValue(),
+					sc_catalog_page : Domain.portal.sc_catalog_page.id.toString() || "sc_home",
+					kb_knowledge_page : Domain.portal.kb_knowledge_page.id.toString() || "kb_view2",
+					'portal.url_suffix' : Domain.portal.url_suffix + '',
+					catalog_items : getCatalogItems(Domain.getUniqueValue()),
+					sc_categories : getCatalogCategories(Domain.portal.sc_catalog),
+					kb_articles : getKBArticles(Domain.getUniqueValue()),
+					kb_categories : getKBCategories(Domain.portal.kb_knowledge_base),
+					my_records : getRecords(Domain.getValue("table"), Domain.getValue("conditions"))
+
+				};
+
+				domains.push(domain);
+
+			}
+		}
+
+
+
+		return domains;
+	}
+
+	function getCatalogItems(id) {
+		var domainItems = [];
+
+		var grDomainItems = new GlideRecord("x_snc_esm_portal_featured_catalog_items");
+		grDomainItems.addQuery("department", id);
+		grDomainItems.addActiveQuery();
+		grDomainItems.orderBy("order");
+		grDomainItems.setLimit(5);
+		grDomainItems.query();
+		while(grDomainItems.next()) {
+			domainItems.push({
+				'catalog_item.sys_id' : grDomainItems.catalog_item.sys_id + '',
+				'catalog_item.picture' : grDomainItems.catalog_item.picture.getDisplayValue(),
+				'catalog_item.name' : grDomainItems.catalog_item.name + '',	
+			});			
+		}
+		return domainItems;
+	}
+
+	function getCatalogCategories(id) {
+		var categories = [];
+
+		var grCategories = new GlideRecord("sc_category");
+		grCategories.addQuery("sc_catalog", id);
+		grCategories.addActiveQuery();
+		grCategories.orderBy("title");
+		grCategories.setLimit(5);
+		grCategories.query();
+
+		while(grCategories.next()) {
+			//if the user shouldn't see this category, don't add it to the categories array
+			if (!grCategories.canRead())			
+				continue;
+
+			categories.push({
+				sys_id : grCategories.sys_id + '',
+				title : grCategories.title + '',
+				homepage_image : grCategories.homepage_image.getDisplayValue()
+			});			
+		}
+		return categories;
+	}
+
+
+	function getKBArticles(id) {
+		var domainItems = [];
+
+		var grDomainItems = new GlideRecord("x_snc_esm_portal_featured_kb_articles");
+		grDomainItems.addQuery("department", id);
+		grDomainItems.addActiveQuery();
+		grDomainItems.orderBy("order");
+		grDomainItems.setLimit(5);
+		grDomainItems.query();
+		while(grDomainItems.next()) {
+			domainItems.push({
+				'article.sys_id' : grDomainItems.article.sys_id + '',
+				'article.short_description' : grDomainItems.article.short_description + ''
+			});			
+		}
+		return domainItems;
+	}
+
+
+	function getKBCategories(id) {
+		var categories = [];
+
+		var grCategories = new GlideRecord("kb_category");
+		grCategories.addQuery("parent_id", id);
+		grCategories.addActiveQuery();
+		grCategories.orderBy("label");
+		grCategories.setLimit(5);
+		grCategories.query();
+		while(grCategories.next()) {
+			if (!grCategories.canRead())			
+				continue;
+
+			categories.push({
+				sys_id : grCategories.sys_id + '',
+				label : grCategories.label + ''
+			});			
+		}
+		return categories;
+	}
+
+	function getRecords(table, conditions) {
+		var records = {};
+		var recArr = [];
+
+		//prevent the GlideRecord from failing by making sure we have a table and a query
+		if(table && conditions) {
+
+			//get the count first (limit will manipulate the actual number)
+			var grTableRecCount = new GlideAggregate(table);
+			grTableRecCount.addEncodedQuery(conditions);
+			grTableRecCount.addAggregate('COUNT');
+			grTableRecCount.query();
+			if (grTableRecCount.next())  {
+				records.record_count = grTableRecCount.getAggregate('COUNT');
+			}
+
+			var grTable = new GlideRecord(table);
+			grTable.addEncodedQuery(conditions);
+			grTable.setLimit(5);
+			grTable.orderBy("sys_created_on");
+			grTable.query();
+
+			while(grTable.next()) {
+				var record = {};
+
+				if(grTable.getValue("short_description") != "") {
+					record.short_desc = grTable.getDisplayValue("short_description");
+				}
+
+				record.number = grTable.number.getDisplayValue();
+				record.sys_id = grTable.sys_id;
+				record.sys_class_name = grTable.sys_class_name;
+
+				recArr.push(record);
+			}
+			records.recArr = recArr;
+		}
+
+		return records;
+	}
+
+	return { 
+		'getContent': getContent 
+	};
+})(new GlideRecord('x_snc_esm_portal_dept_config'));]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-06-16 16:35:39</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>a298fac34f57f200f58ab4e18110c798</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>CrossPortalHeader</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sys_script_include_a298fac34f57f200f58ab4e18110c798</sys_update_name>
+        <sys_updated_by>jon.crane</sys_updated_by>
+        <sys_updated_on>2017-06-16 23:35:34</sys_updated_on>
+    </sys_script_include>
+</record_update>

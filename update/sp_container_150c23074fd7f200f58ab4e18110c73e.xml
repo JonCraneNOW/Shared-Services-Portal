@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name>no-margin-bottom</class_name>
+        <container_class_name/>
+        <name>Support Home - Container 1</name>
+        <order>1</order>
+        <sp_page display_value="support_home">80ccb2874f57f200f58ab4e18110c7ef</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>jon.crane</sys_created_by>
+        <sys_created_on>2017-06-16 20:19:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>150c23074fd7f200f58ab4e18110c73e</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Support Home - Container 1</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_container_150c23074fd7f200f58ab4e18110c73e</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-16 23:54:55</sys_updated_on>
+        <width>container-fluid</width>
+    </sp_container>
+</record_update>

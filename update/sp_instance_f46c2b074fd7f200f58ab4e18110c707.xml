@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>0</order>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">523ca7074fd7f200f58ab4e18110c749</sp_column>
+        <sp_widget display_value="Cross Portal Jumbotron with Search">66ba32474f57f200f58ab4e18110c71d</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>jon.crane</sys_created_by>
+        <sys_created_on>2017-06-16 20:21:19</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>f46c2b074fd7f200f58ab4e18110c707</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_instance_f46c2b074fd7f200f58ab4e18110c707</sys_update_name>
+        <sys_updated_by>jon.crane</sys_updated_by>
+        <sys_updated_on>2017-06-16 23:20:06</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"title": {
+		"value": "",
+		"displayValue": ""
+	},
+	"subtitle": {
+		"value": "",
+		"displayValue": ""
+	},
+	"include_search": {
+		"value": "",
+		"displayValue": ""
+	},
+	"search_placeholder_text": {
+		"value": "",
+		"displayValue": ""
+	},
+	"background_image": {
+		"value": "67fce3474fd7f200f58ab4e18110c731",
+		"displayValue": "jumbotron.png"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=f46c2b074fd7f200f58ab4e18110c707"/>
+</record_update>

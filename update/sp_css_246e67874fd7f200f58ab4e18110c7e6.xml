@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_css">
+    <sp_css action="INSERT_OR_UPDATE">
+        <css>/* HOMEPAGE SEARCH */&#13;
+&#13;
+.supportsearch {&#13;
+  padding:20px 0 50px 0;&#13;
+}&#13;
+&#13;
+&#13;
+@media screen and (min-width: 480px) {&#13;
+  .supportsearch .input-group {&#13;
+    width:40%;&#13;
+    margin:auto;&#13;
+    border-bottom: 1px solid #434343;&#13;
+    padding:40px 0 10px 0;&#13;
+  }&#13;
+}&#13;
+&#13;
+@media screen and (max-width: 479px) {&#13;
+  .supportsearch .input-group {&#13;
+    width:80%;&#13;
+    margin:auto;&#13;
+    border-bottom: 1px solid #434343;&#13;
+    padding:10px 0 10px 0;&#13;
+  }&#13;
+}&#13;
+&#13;
+.supportsearch .input-typeahead {&#13;
+  border:0;&#13;
+  border-radius:0;&#13;
+  padding-bottom:0px;&#13;
+  padding-top:0px;&#13;
+  margin-left:20px;&#13;
+  font-size:32px;&#13;
+  color:#434343;&#13;
+  box-shadow:none;&#13;
+}&#13;
+&#13;
+.supportsearch .input-group-btn {&#13;
+  position:absolute;&#13;
+  left:0px;&#13;
+}&#13;
+&#13;
+//padding settings&#13;
+.no-padding-top {&#13;
+  padding-top: 0 !important;&#13;
+}&#13;
+&#13;
+.no-padding-right {&#13;
+  padding-right: 0 !important;&#13;
+}&#13;
+&#13;
+.no-padding-left {&#13;
+  padding-left: 0 !important;&#13;
+}&#13;
+&#13;
+.tall {&#13;
+  width: 100%;&#13;
+  height: 900px;&#13;
+}</css>
+        <name>support-portal-main.css</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>jon.crane</sys_created_by>
+        <sys_created_on>2017-06-16 20:30:15</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>246e67874fd7f200f58ab4e18110c7e6</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>support-portal-main.css</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_css_246e67874fd7f200f58ab4e18110c7e6</sys_update_name>
+        <sys_updated_by>jon.crane</sys_updated_by>
+        <sys_updated_on>2017-06-16 23:23:55</sys_updated_on>
+    </sp_css>
+</record_update>

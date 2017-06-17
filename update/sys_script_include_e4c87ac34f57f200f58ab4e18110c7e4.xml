@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_esm_portal.CrossPortalSearch</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CrossPortalSearch</name>
+        <script><![CDATA[var CrossPortalSearch = Class.create();
+CrossPortalSearch.prototype = {
+	
+	initialize: function() {
+		this.limit = 50;
+	},
+
+	setLimit: function(limit) {
+		this.limit = limit;
+	},
+
+	_emptyGR: function(tableName) {
+		var gr = new GlideRecord(tableName);
+		gr.addQuery('sys_id', 'INVALID');
+		gr.query();
+
+		return gr;
+	},
+
+	getKB: function(query) {
+		if (!query) {
+			return this._emptyGR('kb_knowledge');
+		}
+		var kbIDs = this._getServiceDomains().map(function(serviceDomain) {
+			return serviceDomain.portal.kb_knowledge_base;
+		}).filter(function(kbID) {
+			return kbID != '';
+		});
+
+		var kb = new GlideRecord('kb_knowledge');
+		kb.addQuery('kb_knowledge_base', 'IN', kbIDs);
+		kb.addQuery('workflow_state', 'published');
+		kb.addQuery('valid_to', '>=', new GlideDate());
+		kb.addQuery('123TEXTQUERY321', query);
+		kb.setLimit(this.limit);
+		kb.query();
+
+		return kb;
+	},
+
+	getCatalogItems: function(query) {
+		if (!query) {
+			return this._emptyGR('sc_cat_item');
+		}
+		var catalogIDs = this._getServiceDomains().map(function(serviceDomain) {
+			return serviceDomain.portal.sc_catalog;
+		}).filter(function(catalogID) {
+			return catalogID != '';
+		});		
+
+		var sc = new GlideRecord('sc_cat_item');
+
+		if (catalogIDs.length == 0)
+			sc.addQuerys('sc_catalogs', '-1');
+		else
+			sc.addQuery('sc_catalogs', 'IN', catalogIDs); // NOTE: Not yet handling edge case: Item in multiple catalogs
+		sc.addQuery('sys_class_name', 'NOT IN', 'sc_cat_item_wizard');
+		sc.addActiveQuery();
+		sc.addQuery('123TEXTQUERY321', query);
+		sc.setLimit(this.limit);
+		sc.query();
+
+		return sc;
+	},
+
+	getSquanda: function(query) {
+		if (!query) {
+			return this._emptyGR('kb_social_qa_question');
+		}
+		var sqandaKBIDs = this._getServiceDomains().map(function(serviceDomain) {
+			return serviceDomain.portal.sqanda_knowledge_base || serviceDomain.portal.kb_knowledge_base;
+		}).filter(function(kbID) {
+			return kbID != '';
+		});
+
+		var questionGR = new GlideRecord("kb_social_qa_question");
+		questionGR.addQuery('kb_knowledge_base', 'IN', sqandaKBIDs);
+		questionGR.addQuery('123TEXTQUERY321', query);
+		questionGR.setLimit(this.limit);
+		questionGR.query();
+
+		return questionGR;
+	},
+
+	_getServiceDomains: function() {
+		this._serviceDomains = this._serviceDomains || new PortalDomainConfig().getAllPortals();
+
+		return this._serviceDomains;
+	},
+
+	type: 'CrossPortalSearch'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-06-16 16:35:53</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>e4c87ac34f57f200f58ab4e18110c7e4</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>CrossPortalSearch</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sys_script_include_e4c87ac34f57f200f58ab4e18110c7e4</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-16 20:54:39</sys_updated_on>
+    </sys_script_include>
+</record_update>

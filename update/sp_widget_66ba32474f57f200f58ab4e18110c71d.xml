@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>div.jumbotron.hero-technology {
+  text-align:center;
+  background-size:cover;
+  background-position:center;
+  padding-top:100px;
+  padding-bottom:100px;
+  min-height: 300px;
+  max-height: 400px;
+  border: none;
+  border-radius: 0;
+}
+
+h1.hero-title {
+  text-shadow:0 2px 2px rgba(0,0,0,0.3);
+  color:$ssp-jumbotron-title-text-color;
+  font-weight:100 !important;
+  margin-bottom: 20px;
+  font-family: "Helvetica Neue";
+}
+
+
+p.hero-subtitle {
+  max-width:600px;
+  margin:25px auto;
+  padding:10px 15px;
+  background-color:rgba(0,0,0,0.1);
+  color:$ssp-jumbotron-subtitle-text-color;
+  text-shadow:0 1px 1px rgba(0,0,0,0.7);
+  font-weight:100 !important;
+  float: right;
+  font-family: "Helvetica Neue";
+
+}
+
+.jumbotron {
+  margin-bottom: 0 !important;
+}
+
+/* @media queries */
+@media  screen and (max-width: 768px) {
+  .jumbotron .hero-title {
+    font-size: 26px;
+  }
+
+  div.jumbotron.hero-technology {
+    padding-top: 20px;
+    min-height: 200px;
+    max-height: 300px;
+  }
+
+
+  .supportsearch .input-group {
+    width: 100% !important;
+  }
+
+  .supportsearch .input-group .form-control {
+    font-size: 20px !important;
+  }
+
+}
+
+@media  screen and (min-width: 768px) {
+  .jumbotron h1, .jumbotron .h1 {
+    font-size: 56px;
+  }
+
+}
+
+/* Cross portal typeahead search style overrides */
+.input-group-btn &gt; .btn {
+  background-color: rgba(255, 255, 255, 0);
+}
+.input-group-btn {
+  position: relative !important;
+}
+
+.btn {
+  font-size: 24px; 
+}
+
+.supportsearch .input-group {
+  margin-top: 6px;
+  width: 700px;
+  margin: auto;
+  border-bottom: 0px solid #434343;
+  padding: 40px 0 10px 0;
+  padding: 0px;
+  background-color: rgba(153, 153, 153, 0.25);
+  border-radius: 30px;
+  font-family: "Helvetica Neue";
+  font-weight:100 !important;
+}
+
+.supportsearch .input-group .form-control {
+  margin-top: 6px;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 24px;
+  color: #fff;
+  font-weight:100 !important;
+  text-align: center;
+}
+
+
+.dropdown-menu {
+  left: 0 !important; 
+}
+
+input::-webkit-input-placeholder {
+  color: #fff; 
+  font-weight:100 !important;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>cross-portal-jumbotron-search</id>
+        <internal>false</internal>
+        <link/>
+        <name>Cross Portal Jumbotron with Search</name>
+        <option_schema>[{"name":"title","default_value":"Your enterprise...at light speed...","label":"Title","type":"string"},{"name":"subtitle","label":"Subtitle","type":"string"},{"name":"include_search","default_value":"true","label":"Include search","type":"boolean"},{"name":"search_placeholder_text","default_value":"Where would you like to go today?","label":"Search placeholder text","type":"string"},{"displayValue":"Images","name":"background_image","label":"Background image","type":"reference","value":"db_image","ed":{"reference":"db_image"}}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	data.title = options.title;
+	data.subtitle = options.subtitle;
+	data.include_search = options.include_search;
+	data.search_placeholder_text = options.search_placeholder_text;
+	data.background_image = getImage(options.background_image);
+
+	data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search-global", {placeholder: data.search_placeholder_text.toString()});
+
+
+	function getImage(imageId) {
+		var grImage = new GlideRecord("db_image");
+		if(grImage.get(imageId))
+			return grImage.getDisplayValue();
+
+		return false;
+	}
+
+
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-06-16 16:44:20</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>66ba32474f57f200f58ab4e18110c71d</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Cross Portal Jumbotron with Search</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_widget_66ba32474f57f200f58ab4e18110c71d</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-16 23:55:39</sys_updated_on>
+        <template><![CDATA[<div class="jumbotron hero-technology" 
+     ng-style="{'background-image':'url({{c.data.background_image}})'}">
+  <h1 class="hero-title" ng-if="c.data.title">{{::c.data.title}}</h1>
+  <p class="text-right hero-subtitle" ng-if="c.data.subtitle">{{::c.data.subtitle}}</p>
+  <div class="supportsearch">
+    <sp-widget widget="c.data.typeAheadSearch"></sp-widget>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

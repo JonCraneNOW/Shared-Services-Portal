@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>crossPortalModalLogin</id>
+        <sp_widget display_value="Cross Portal Header">61dc36874f57f200f58ab4e18110c70a</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-06-16 16:57:52</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>82cd36874f57f200f58ab4e18110c70f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>crossPortalModalLogin</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_ng_template_82cd36874f57f200f58ab4e18110c70f</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-16 16:57:52</sys_updated_on>
+        <template><![CDATA[<div class="login_widget">
+  <sp-widget widget="data.loginWidget"></sp-widget>
+  <style>
+    .modal-content { border: 0px solid transparent; }
+  </style>
+</div>]]></template>
+    </sp_ng_template>
+</record_update>

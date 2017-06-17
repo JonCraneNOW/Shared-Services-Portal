@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($window, $location) {
+  var c = this;
+  
+	c.getPortalURL = function(domain) {
+	  return '/' + domain.portal.url_suffix;
+  };
+	
+	c.determineBlockPadding = function(indexNumber) {
+		//everything that's in row 2 or even more gets the padding-top class
+		if(indexNumber > 2) {
+			return 'block-li';
+		}
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.primary-link {
+  color: $brand-primary;
+}
+
+.block-li {
+  padding-top: 15px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>support_portal_domain_directory</id>
+        <internal>false</internal>
+        <link/>
+        <name>Support Portal Domain Directory</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	var serviceDomainGR = new GlideRecord('x_snc_ssp_support_portal_domains');
+	serviceDomainGR.addActiveQuery();
+	serviceDomainGR.orderBy('order');
+	serviceDomainGR.query();
+
+	data.domains = [];
+
+	while (serviceDomainGR.next()) {
+		var domain = {};
+		$sp.getRecordDisplayValues(domain, serviceDomainGR, "name, background_image, description, glyph, glyph_background_color, portal.url_suffix");
+		$sp.getRecordValues(domain, serviceDomainGR, "sys_id, order, active");
+		data.domains.push(domain);
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>matt.dodd</sys_created_by>
+        <sys_created_on>2017-06-16 16:31:16</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>c3b7b6431393f2005ac679304244b0db</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Support Portal Domain Directory</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_widget_c3b7b6431393f2005ac679304244b0db</sys_update_name>
+        <sys_updated_by>matt.dodd</sys_updated_by>
+        <sys_updated_on>2017-06-16 16:31:49</sys_updated_on>
+        <template><![CDATA[<div class="container content-md">
+  <ul class="row block-grid-v2">
+    <li class="col-md-4 col-sm-6 md-margin-bottom-30" ng-class="c.determineBlockPadding($index)" ng-repeat-start="domain in data.domains">
+      <a ng-href="{{domain['portal.url_suffix']}}" class="primary-link">
+      <div class="easy-block-v1">
+        <img class="img-responsive" ng-src="{{domain.background_image}}" alt="">
+        <div class="easy-block-v1-badge" ng-style="{'background-color': domain.glyph_background_color}"><i class="fa fa-{{domain.glyph}}" aria-hidden="true"></i></div>
+      </div>
+      <div class="block-grid-v2-info rounded-bottom">
+        <h3><a ng-href="{{domain['portal.url_suffix']}}" class="primary-link">{{domain.name}}</a></h3>
+        <p>{{domain.description}}</p>						
+      </div>
+      </a>
+    </li>
+    <div class="clearfix" ng-repeat-end ng-if="$index % 3 == 2" />				
+  </ul>
+</div>]]></template>
+    </sp_widget>
+</record_update>

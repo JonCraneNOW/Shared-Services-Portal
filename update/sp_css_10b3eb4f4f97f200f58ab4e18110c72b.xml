@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_css">
+    <sp_css action="INSERT_OR_UPDATE">
+        <css>/* Style that directive! */&#13;
+.sidenav-button {&#13;
+  margin-top: 6%;&#13;
+  margin-left: 5px;&#13;
+  font-size: 24px;&#13;
+  color: #fff;&#13;
+} &#13;
+&#13;
+/* The side navigation menu */&#13;
+.sidenav {&#13;
+  height: 100%; /* 100% Full-height */&#13;
+  width: 300px; &#13;
+  left: -300px;&#13;
+  position: fixed; /* Stay in place */&#13;
+  z-index: 1; /* Stay on top */&#13;
+  top: 0;&#13;
+  background-color: #111; /* Black*/&#13;
+  overflow-x: hidden; /* Disable horizontal scroll */&#13;
+  transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */&#13;
+}&#13;
+&#13;
+/* The navigation menu links */&#13;
+.sidenav a {&#13;
+  text-decoration: none;&#13;
+  color: #818181;&#13;
+  transition: 0.3s&#13;
+}&#13;
+&#13;
+/* Position and style the close button (top right corner) */&#13;
+.sidenav .closebtn {&#13;
+  position: absolute;&#13;
+  top: 0;&#13;
+  right: 25px;&#13;
+  font-size: 36px;&#13;
+  margin-left: 50px;&#13;
+}&#13;
+&#13;
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */&#13;
+@media screen and (max-height: 450px) {&#13;
+  .sidenav {padding-top: 15px;}&#13;
+  .sidenav a {font-size: 18px;}&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+.nav-side-menu {&#13;
+  overflow: auto;&#13;
+  font-family: verdana;&#13;
+  font-size: 12px;&#13;
+  font-weight: 200;&#13;
+  background-color: #2e353d;&#13;
+  top: 0px;&#13;
+  height: 100%;&#13;
+  color: #e1ffff;&#13;
+}&#13;
+.nav-side-menu .brand {&#13;
+  background-color: #23282e;&#13;
+  line-height: 50px;&#13;
+  display: block;&#13;
+  text-align: center;&#13;
+  font-size: 14px;&#13;
+}&#13;
+&#13;
+.nav-logo { &#13;
+  height: 70px;&#13;
+}&#13;
+.nav-side-menu .toggle-btn {&#13;
+  display: none;&#13;
+}&#13;
+.nav-side-menu ul,&#13;
+.nav-side-menu li {&#13;
+  list-style: none;&#13;
+  padding: 0px;&#13;
+  margin: 0px;&#13;
+  line-height: 35px;&#13;
+  cursor: pointer;&#13;
+&#13;
+}&#13;
+.nav-side-menu ul :not(collapsed) .arrow:before,&#13;
+.nav-side-menu li :not(collapsed) .arrow:before {&#13;
+  font-family: FontAwesome;&#13;
+  content: "\f078";&#13;
+  display: inline-block;&#13;
+  padding-left: 10px;&#13;
+  padding-right: 10px;&#13;
+  vertical-align: middle;&#13;
+  float: right;&#13;
+}&#13;
+.nav-side-menu ul .active,&#13;
+.nav-side-menu li .active {&#13;
+  border-left: 3px solid #D22329;&#13;
+  background-color: #4f5b69;&#13;
+}&#13;
+.nav-side-menu ul .sub-menu li.active,&#13;
+.nav-side-menu li .sub-menu li.active {&#13;
+  color: #d19b3d;&#13;
+}&#13;
+.nav-side-menu ul .sub-menu li.active a,&#13;
+.nav-side-menu li .sub-menu li.active a {&#13;
+  color: #d19b3d;&#13;
+}&#13;
+.nav-side-menu ul .sub-menu li,&#13;
+.nav-side-menu li .sub-menu li {&#13;
+  background-color: #181c20;&#13;
+  border: none;&#13;
+  line-height: 28px;&#13;
+  border-bottom: 1px solid #23282e;&#13;
+  margin-left: 0px;&#13;
+}&#13;
+.nav-side-menu ul .sub-menu li:hover,&#13;
+.nav-side-menu li .sub-menu li:hover {&#13;
+  background-color: #020203;&#13;
+}&#13;
+.nav-side-menu ul .sub-menu li .nav-content-header:before,&#13;
+.nav-side-menu li .sub-menu li .nav-content-header:before {&#13;
+  font-family: FontAwesome;&#13;
+  content: "\f105";&#13;
+  display: inline-block;&#13;
+  padding-left: 10px;&#13;
+  padding-right: 10px;&#13;
+  vertical-align: middle;&#13;
+}&#13;
+.nav-side-menu li {&#13;
+  padding-left: 0px;&#13;
+  border-left: 3px solid #2e353d;&#13;
+  border-bottom: 1px solid #23282e;&#13;
+}&#13;
+.nav-side-menu ul .nav-content-item {&#13;
+  padding-left: 15px;&#13;
+}&#13;
+&#13;
+.nav-side-menu li a {&#13;
+  text-decoration: none;&#13;
+  color: #e1ffff;&#13;
+}&#13;
+.nav-side-menu li a i {&#13;
+  padding-left: 10px;&#13;
+  width: 20px;&#13;
+  padding-right: 20px;&#13;
+}&#13;
+.nav-side-menu li:hover {&#13;
+  border-left: 3px solid;&#13;
+  background-color: #4f5b69;&#13;
+  -webkit-transition: all 1s ease;&#13;
+  -moz-transition: all 1s ease;&#13;
+  -o-transition: all 1s ease;&#13;
+  -ms-transition: all 1s ease;&#13;
+  transition: all 1s ease;&#13;
+}&#13;
+&#13;
+@media (max-width: 767px) {&#13;
+  .nav-side-menu {&#13;
+    position: relative;&#13;
+    width: 100%;&#13;
+    margin-bottom: 10px;&#13;
+  }&#13;
+  .nav-side-menu .toggle-btn {&#13;
+    display: block;&#13;
+    cursor: pointer;&#13;
+    position: absolute;&#13;
+    right: 10px;&#13;
+    top: 10px;&#13;
+    z-index: 10 !important;&#13;
+    padding: 3px;&#13;
+    background-color: #ffffff;&#13;
+    color: #000;&#13;
+    width: 40px;&#13;
+    text-align: center;&#13;
+  }&#13;
+  .brand {&#13;
+    text-align: left !important;&#13;
+    font-size: 22px;&#13;
+    padding-left: 20px;&#13;
+    line-height: 50px !important;&#13;
+  }&#13;
+}&#13;
+@media (min-width: 767px) {&#13;
+  .nav-side-menu .menu-list .menu-content {&#13;
+    display: block;&#13;
+  }&#13;
+}&#13;
+body {&#13;
+  margin: 0px;&#13;
+  padding: 0px;&#13;
+}&#13;
+</css>
+        <name>cross-portal-header-side-menu.css</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>jon.crane</sys_created_by>
+        <sys_created_on>2017-06-16 19:43:33</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>10b3eb4f4f97f200f58ab4e18110c72b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cross-portal-header-side-menu.css</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_css_10b3eb4f4f97f200f58ab4e18110c72b</sys_update_name>
+        <sys_updated_by>jon.crane</sys_updated_by>
+        <sys_updated_on>2017-06-16 19:43:33</sys_updated_on>
+    </sp_css>
+</record_update>

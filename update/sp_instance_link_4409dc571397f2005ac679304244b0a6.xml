@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance_link">
+    <sp_instance_link action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph>navicon</glyph>
+        <id/>
+        <kb_article display_value="KB0010001">2d2e905b1397f2005ac679304244b026</kb_article>
+        <kb_category/>
+        <kb_topic/>
+        <order>0</order>
+        <sc_cat_item/>
+        <sc_category/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">5098dc571397f2005ac679304244b04c</sp_column>
+        <sp_page display_value="kb_article">dea5792147132100ba13a5554ee4902d</sp_page>
+        <sp_widget display_value="Icon Link">3caa67afcb13020000f8d856634c9c2e</sp_widget>
+        <sys_class_name>sp_instance_link</sys_class_name>
+        <sys_created_by>matt.dodd</sys_created_by>
+        <sys_created_on>2017-06-16 23:36:15</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>4409dc571397f2005ac679304244b0a6</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Get your Turkey Burgers here</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_instance_link_4409dc571397f2005ac679304244b0a6</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-17 00:24:32</sys_updated_on>
+        <title>Get your Turkey Burgers here</title>
+        <type>kb_article</type>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_link>
+    <sys_translated_text action="delete_multiple" query="documentkey=4409dc571397f2005ac679304244b0a6"/>
+</record_update>

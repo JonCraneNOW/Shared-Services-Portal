@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function ($rootScope, $window, $scope, snRecordWatcher, spUtil, $location, $uibModal, cabrillo, $timeout, CrossPortalHeaderUtils) {
+	var c = this;
+	console.log(c.data)
+	c.data.isMobile = CrossPortalHeaderUtils.isMobile();
+	$scope.obj = { prop: "world" };
+
+	$scope.userID = $scope.user.sys_id;
+	if (cabrillo.isNative())
+		$scope.isViewNative = true;
+
+	c.loadHover = function() {
+		if (!$scope.isViewNative ){
+			$(".dropdown").hover(            
+				function() {
+					$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown(100);
+					$(this).toggleClass('open');        
+				},
+				function() {
+					$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp(100);
+					$(this).toggleClass('open');       
+				});
+		}
+	};
+
+	$scope.openPopUp = function() {
+		var url = "$chat_support.do?queueID=" + $scope.data.connect_support_queue_id;
+		var popup = window.open (url, "popup", "width=900, height=600"); 
+	};
+
+	$scope.openLogin = function () {
+		$scope.modalInstance = $uibModal.open({
+			templateUrl: 'modalLogin',
+			scope: $scope
+		});
+	};
+
+	$rootScope.$on('sp.avatar_changed', function() {
+		$scope.userID = "";
+		$timeout(function(){
+			$scope.userID = $scope.user.sys_id;
+		});
+	});
+
+	$scope.isHomepage = function() {
+		if (!$scope.page.id)
+			return true;
+
+		if ($scope.page.id == $scope.portal.homepage_dv)
+			return true;
+
+		return false;
+	};
+
+	c.kbRedirect = function(suffix, kbPage) {
+		$window.location.href = "/"+suffix+"?id="+kbPage;
+	};
+
+	c.scRedirect = function(suffix, scPage) {
+		$window.location.href = "/"+suffix+"?id="+scPage;
+	};
+
+	c.openMenuItem = function(suffix, page, item) {
+		if(page == "kb_category") {
+			$window.location.href = "/"+suffix+"?id="+page+"&kb_category="+item;
+		} else {
+			$window.location.href = "/"+suffix+"?id="+page+"&sys_id="+item;
+		}
+
+	};
+
+	c.openRecord = function(suffix, portalPage, tableName, recordId) {
+		//console.log(suffix+ " / type: " + portalPage + " / tableName: " +tableName +" / recordId: "+ recordId);
+		$window.location.href = "/"+suffix+"?id="+portalPage+"&table="+tableName+"&sys_id="+recordId;
+	};
+
+	c.openRecordList = function(suffix, portalPage) {
+		if(suffix != "csm") {
+			$window.location.href = "/"+suffix+"?id="+portalPage;
+		} else {
+			$window.location.href = "/"+suffix+"?id="+portalPage+"&table=sn_customerservice_case&view=csp";
+		}
+	};
+
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.navbar-inverse .navbar-toggle {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav &gt; li &gt; a {
+  max-height: 50px;
+}
+
+.navbar-brand {
+  height: 50px;
+  padding: 0;
+}
+
+.navbar-brand img, .navbar-brand span {
+  margin-left: $sp-logo-margin-x;
+  margin-right: $sp-logo-margin-x;
+  margin-top: $sp-logo-margin-y;
+  margin-bottom: $sp-logo-margin-y;
+  display: block;
+  max-height: 100px;//$sp-logo-max-height;
+  max-width: 300px;//$sp-logo-max-width;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* for mobile app */
+.navbar-inverse.is-native {
+  background-color: #405060;
+}
+
+nav{
+  margin-bottom: 0px;
+  border-radius: 0px; 
+}
+
+.navbar-collapse{
+  padding-right: 0px;
+}
+
+.navbar-nav {
+  margin: 0px;
+}
+
+.button-dd {
+  padding-top: 0;
+  padding-bottom: 15px !important;
+}
+
+.embedded-list-menu {
+  margin-top: 20px; 
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+/* Mega Menu Overrides */
+.mega-menu-inner {
+  background-color: $navbar-inverse-bg;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+body {
+  font-family: 'Helvetica Neue', 'SourceSansPro', 'Open Sans', 'sans-serif';
+  font-weight: 200;
+}
+.mega-dropdown {
+  position: static !important;
+}
+.mega-dropdown-menu {
+  padding: 20px 0px;
+  width: 100%;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.mega-dropdown-menu &gt; li &gt; ul {
+  padding: 0;
+  margin: 0;
+}
+.mega-dropdown-menu &gt; li &gt; ul &gt; li {
+  list-style: none;
+}
+.mega-dropdown-menu &gt; li &gt; ul &gt; li &gt; a {
+  display: block;
+  color: #222;
+  padding: 3px 5px;
+  font-weight: 100;
+}
+.mega-dropdown-menu &gt; li ul &gt; li &gt; a:hover,
+.mega-dropdown-menu &gt; li ul &gt; li &gt; a:focus {
+  text-decoration: none;
+}
+
+.ssp-domain-name {
+  font-size: 14px !important; 
+  color: $navbar-inverse-link-color !important;
+}
+
+.mega-dropdown-menu .dropdown-header {
+  font-size: 18px;
+  font-family: 'Helvetica Neue', 'SourceSansPro', 'Open Sans', 'sans-serif';
+  color: #ff3546;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
+  color: $brand-primary;
+  font-weight: 200;
+}
+
+.carousel-control {
+  width: 30px;
+  height: 30px;
+  top: -35px;
+
+}
+.left.carousel-control {
+  right: 30px;
+  left: inherit;
+}
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right {
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 30px;
+  text-shadow: none;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+/* Mega menu misc */
+.navbar {
+  min-height: 0;
+}
+
+#search-btn {
+  background-color: $brand-primary;
+  color: #fff;
+}
+
+.search-span {
+  font-family: "SourceSansPro", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.mega-menu {
+  z-index: 1000;
+}
+
+.mega-menu-btn {
+  margin-left: 10px;
+  margin-top: 10px;
+  background-color: $brand-primary;
+  color: #fff;
+}
+
+.mega-menu-p {
+  margin-left: 15px;
+}
+
+.mega-menu-btn:hover {
+  background-color: $navbar-inverse-link-hover-color;
+  color: #fff;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.badge-record-counter {
+  color: #fff;
+  background-color: $brand-primary;
+}
+
+.input-group-btn {
+  font-size: 14px;
+}
+
+[ng-click],[data-ng-click],[x-ng-click] {
+  cursor: pointer;
+}
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>cross-portal-header</id>
+        <internal>false</internal>
+        <link/>
+        <name>Cross Portal Header</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	// Defines the support queue ID that will be linked to by the Live Chat link in header
+	data.connect_support_queue_id = $sp.getValue('sp_chat_queue');
+	data.login_page = $sp.getValue('login_page');
+	//var menu = $sp.getValue("sp_rectangle_menu");
+	//data.menu = $sp.getWidgetFromInstance(menu);
+	//data.portalMenu = $sp.getWidget("cross-portal-domain-menu");
+	//data.crossPortalMenu = $sp.getWidget('cross-portal-domain-menu-jc')
+
+	if (data.menu && data.menu.data) {
+		data.menu.data.replace = true;
+		// Hide login if menu already has link to login
+		data.hasLogin = false;
+		if (data.menu.data.menu.items) {
+			for(var i in data.menu.data.menu.items) {
+				var item = data.menu.data.menu.items[i];
+				if (item.type == 'page' && item.sp_page == data.login_page)
+					data.hasLogin = true;
+			}
+		}
+	}
+
+	data.loginWidget = $sp.getWidgetFromInstance('login-modal');
+	data.languagePicker = $sp.getWidget("language-picker");
+	data.announcementPicker = $sp.getWidget("announcement-picker");
+	data.sideButtons = $sp.getWidgetFromInstance("sticky-side-buttons-embedded");
+	data.announcementWidget = $sp.getWidgetFromInstance("announcement-header-instance");
+	data.favoritesHeart = $sp.getWidgetFromInstance("favorites-heart");
+	data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search-mini-globa", {padding_bottom: "0px"});
+	data.sideNav = $sp.getWidget("cross-portal-side-menu");
+	data.domains = CrossPortalHeader.getContent();
+	data.menuStyle = gs.getProperty('x_snc_esm_portal.esm.portal.menu.style');
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-06-16 16:54:38</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>61dc36874f57f200f58ab4e18110c70a</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Cross Portal Header</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_header_footer_61dc36874f57f200f58ab4e18110c70a</sys_update_name>
+        <sys_updated_by>jon.crane</sys_updated_by>
+        <sys_updated_on>2017-06-16 23:48:25</sys_updated_on>
+        <template><![CDATA[<div class="announcement"> 
+  <sp-widget widget="c.data.announcementWidget"></sp-widget>
+</div>
+                               
+<div>
+  <div>
+    <sp-widget widget="c.data.sideButtons"></sp-widget>
+  </div>
+  
+  <nav class="navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}"
+       role="navigation">
+
+    <div ng-show="::!isViewNative" class="navbar-header">
+      <cross-portal-header-side-menu ng-if="c.data.menuStyle == 'sidemenu'" data="c.data.domains" portal="portal"></cross-portal-header-side-menu> 
+      <a class="navbar-brand" ng-if="::!portal.logo" href="?id={{::portal.homepage_dv}}"><span>{{::portal.title}}</span></a>
+      <a class="navbar-brand navbar-brand-logo" ng-if="::portal.logo" href="?id={{::portal.homepage_dv}}">
+       <img ng-src="{{::portal.logo}}" />
+      </a>
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sp-nav-bar">
+        <span class="sr-only">${Toggle navigation}</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+
+    <div sp-navbar-toggle="" class="collapse navbar-collapse" id="sp-nav-bar">
+
+      <ul id="mega-menu-contents" class="nav navbar-nav" ng-if="c.data.menuStyle == 'megamenu' || c.data.isMobile">
+        <li>          
+          <a ng-href="/support" class="dropdown-toggle ssp-domain-name" data-toggle="dropdown">
+            ${Support Portal}
+          </a>
+        </li>
+
+        <li class="dropdown mega-dropdown" ng-repeat="domain in c.data.domains  track by $index" ng-init="$last && c.loadHover()">
+          <a ng-href="/{{domain['portal.url_suffix']}}" class="dropdown-toggle ssp-domain-name" data-toggle="dropdown">
+            {{::domain.name }}<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu mega-dropdown-menu">
+            
+            <!-- This may go away... :( -->
+            <li class="col-sm-3 hidden-xs">
+              <ul>
+                <li class="dropdown-header">${Popular Items}</li>                            
+                <div id="menCollection" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1"></a>
+                      <h4><small>iPhone 7</small></h4>                                        
+                      <button class="btn btn-primary" type="button">$899.99</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Cart</button>       
+                    </div><!-- End Item -->
+                    <div class="item">
+                      <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2"></a>
+                      <h4><small>Macbook Pro 15"</small></h4>                                        
+                      <button class="btn btn-primary" type="button">$1999.99</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Cart</button>        
+                    </div><!-- End Item -->
+                    <div class="item">
+                      <a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3"></a>
+                      <h4><small>LG Ultrawide Monitor</small></h4>                                        
+                      <button class="btn btn-primary" type="button">$499.99</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Cart</button>      
+                    </div><!-- End Item -->                                
+                  </div><!-- End Carousel Inner -->
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#derp" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#derp" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div><!-- /.carousel -->
+                <li class="divider"></li>
+                <li><a href="#">View all Items <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+              </ul>
+            </li>
+
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">${Featured Catalog Items}</li>
+                <p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">
+                  ${There are currently no featured catalog items.}
+                </p>
+
+                <li ng-repeat="item in domain.catalog_items">
+                  <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'sc_cat_item', item['catalog_item.sys_id'])">
+                    <img ng-if="item['catalog_item.picture']" ng-src="{{::item['catalog_item.picture']}}" style="height:30px; width: auto"/>
+                    <i ng-if="!item['catalog_item.picture']" class="fa fa-shopping-cart"></i>{{::item["catalog_item.name"]}}</a>
+                </li>    
+
+                <li class="divider"></li>
+                <li class="dropdown-header">${Featured Catalog Categories}</li>
+                <p class="mega-menu-p" ng-if="domain.sc_categories.length == 0">
+                  ${There are currently no featured catalog categories.}
+                </p>
+                <!-- Catalog Categories -->
+                <li ng-repeat="sc_cat in domain.sc_categories">
+                  <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'sc_category', sc_cat.sys_id)">
+                    <img ng-if="sc_cat.homepage_image" ng-src="{{::sc_cat.homepage_image}}" style="height:30px; width:30px"/>
+                    <i class="fa fa-shopping-cart" ng-if="!sc_cat.homepage_image"></i>{{::sc_cat.title}}</a>
+                </li>
+                <li><button class="btn mega-menu-btn" type="button" ng-click="c.scRedirect(domain['portal.url_suffix'], domain.sc_catalog_page)"><i class="fa fa-shopping-cart"></i> ${View all {{::domain.abbreviated_name}} Items}</button></li>
+                <!-- End Catalog Categories -->
+              </ul>
+            </li>
+
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">${Featured Knowledge Articles}</li>
+                <p class="mega-menu-p" ng-if="domain.kb_articles.length == 0">
+                  ${There are currently no featured knowledge articles.}
+                </p>
+                <li ng-repeat="article in domain.kb_articles">
+                  <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'kb_article', article['article.sys_id'])">
+                    <img ng-if="article['article.image']" ng-src="{{article['article.image']}}" style="height:30px; width: auto"/>
+                    <i ng-if="!article['article.image']" class="fa fa-book"></i>{{article["article.short_description"]}}</a>
+                </li> 
+
+                <li class="divider"></li>
+                <li class="dropdown-header">${Featured Knowledge Categories}</li>
+                <p class="mega-menu-p" ng-if="domain.kb_categories.length == 0">
+                  ${There are currently no featured knowledge categories.}
+                </p>
+                <!-- KB Categories -->
+                <li ng-repeat="kb_cat in domain.kb_categories">
+                  <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'kb_category', kb_cat.sys_id)">
+                    <i class="fa fa-book"></i>{{kb_cat.label}}</a>
+                </li>
+                <li><button class="btn mega-menu-btn" type="button" ng-click="c.kbRedirect(domain['portal.url_suffix'], domain.kb_knowledge_page)"><i class="fa fa-book"></i> ${View all {{domain.abbreviated_name}} Articles}</button></li>
+              </ul>
+            </li>
+            
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">${My Records} <span class="badge badge-record-counter rounded">{{domain.my_records.record_count}}</span></li>
+                <p class="mega-menu-p" ng-if="domain.my_records.length == 0">
+                  ${You have no open records.}
+                </p>
+
+                <li ng-repeat="record in domain.my_records.recArr">
+                  <a ng-click="c.openRecord(domain['portal.url_suffix'], domain.portal_page, record.sys_class_name, record.sys_id)">
+                    <i class="fa fa-list"></i>{{record.number}} <span ng-if="record.short_desc">- {{record.short_desc | limitTo: 40}} {{record.short_desc.length > 40 ? '&hellip;' : ''}}</span></a>
+                </li>
+
+                <li><button class="btn mega-menu-btn" type="button" ng-click="c.openRecordList(domain['portal.url_suffix'], domain.record_overview)"><i class="fa fa-shopping-cart"></i> ${View all my {{domain.abbreviated_name}} records}</button></li>                  
+              </ul>
+            </li>
+          </ul>				
+        </li>
+      </ul>
+
+
+      <ul ng-if="::(!user.logged_in && page.id != portal.login_page_dv && !data.hasLogin)" class="nav navbar-nav navbar-right">
+        <li><a href ng-click="openLogin()">${Login}</a></li>
+      </ul>
+
+      <ul ng-if="::user.logged_in" class="nav navbar-nav navbar-right">
+        <!-- chat, avatar, and logout -->
+        <li ng-if="::data.connect_support_queue_id"><a href ng-click="openPopUp()">${Live Chat}</a></li>
+
+        <li class="embedded-list-menu">
+          <sp-widget widget="c.data.announcementPicker"></sp-widget>
+        </li>
+        <li class="embedded-list-menu">
+          <sp-widget widget="c.data.languagePicker"></sp-widget>
+        </li>
+		<li class="embedded-list-menu">
+          <sp-widget widget="c.data.favoritesHeart"></sp-widget>
+        </li>
+        <li class="dropdown hidden-xs">
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="navbar-avatar"><sn-avatar class="avatar-small-medium" primary="userID" /></span>
+            <span class="visible-lg-inline">{{::user.name}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a ng-href="?id=user_profile&sys_id={{::user.sys_id}}">${Profile}</a></li>
+            <li><a href="{{::portal.logoutUrl}}">${Logout}</a></li>
+          </ul>
+        </li>
+        <li class="visible-xs-block"><a ng-href="?id=user_profile&sys_id={{::user.sys_id}}"><span class="navbar-avatar"><sn-avatar class="avatar-small-medium" primary="userID" /></span>{{::user.name}}</a></li>
+        <li class="visible-xs-block"><a href="{{::portal.logoutUrl}}">${Logout}</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-border-bottom navbar-right">
+        <li class="no-border">
+          <div class="search-open">
+            <div class="input-group">            
+              <sp-widget widget="c.data.typeAheadSearch"></sp-widget>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </nav>  
+</div>
+
+
+]]></template>
+    </sp_header_footer>
+</record_update>

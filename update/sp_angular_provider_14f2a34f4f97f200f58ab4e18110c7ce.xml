@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>crossPortalHeaderSideMenu</name>
+        <script><![CDATA[function() {
+	return {
+		restrict: 'E',
+		scope: { data: '=',
+						 portal: '='
+					 },
+		template: '<span class="sidenav-button"><i ng-click="toggleNav()" class="fa fa-align-left sidenav-button hidden-xs" aria-hidden="true"></i></span>'
+		+ '<div id="cross-portal-side-nav" class="sidenav">'
+		
+		+ '<div class="nav-side-menu">'
+    + '<div class="brand"><img class="nav-logo" ng-src="{{::portal.logo}}" /></div>'
+        + '<div class="menu-list">'
+            + '<ul id="menu-content" class="menu-content collapse out">'
+                + '<li style="border-left: 3px solid {{::domain.glyph_background_color }};">'
+                  + '<a ng-href="/support" >'
+                  + '<i class="fa fa-life-ring fa-lg" ></i> ${Support Portal}'
+                  + '</a>'
+                + '</li>'
+								+ '<div ng-repeat="domain in data">'
+									+ '<li data-toggle="collapse" data-target="#{{::domain.abbreviated_name}}" class="collapsed" style="border-left: 3px solid {{::domain.glyph_background_color }};">'
+										+ '<a href="#"><i class="fa fa-{{::domain.glyph }} fa-lg"></i> {{::domain.name }} <span class="arrow"></span></a>'
+									+ '</li>'
+
+									+ '<ul class="sub-menu collapse" id="{{::domain.abbreviated_name}}">'
+		
+											+ '<li><a class="nav-content-header" href="/{{::domain[&quot;portal.url_suffix&quot;]}}">{{::domain.name}} Portal</a>'
+											+ '</li>'
+		
+											// Featured Catalog Items
+											+ '<li><a class="nav-content-header" href="#">${Featured Catalog Items}</a>'
+											+ '<p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">'
+											+ '${There are currently no featured catalog items.}'
+											+ '</p>'
+		
+												+ '<li class="nav-content-item" ng-repeat="item in domain.catalog_items">'
+													+ '<a ng-click="openMenuItem(domain[&quot;portal.url_suffix&quot;], &quot;sc_cat_item&quot;, item[&quot;catalog_item.sys_id&quot;])">'
+													//+ '<img ng-if="item[&quot;catalog_item.picture&quot;]" ng-src="{{::item[&quot;catalog_item.picture&quot;]}}" style="height:30px; width: auto"/>'
+													+ '<i class="fa fa-shopping-cart"></i>{{::item[&quot;catalog_item.name&quot;]}}</a>'
+												+ '</li>'
+		
+											+ '</li>'
+		
+											//Featured Catalog Categories
+											+ '<li><a class="nav-content-header" href="#">${Featured Catalog Categories}</a>'
+                				+ '<p class="mega-menu-p" ng-if="domain.sc_categories.length == 0">'
+                  			+ '${There are currently no featured catalog categories.}'
+                				+ '</p>'
+		
+												+ '<li class="nav-content-item" ng-repeat="sc_cat in domain.sc_categories">'
+													+ '<a ng-click="openMenuItem(domain[&quot;portal.url_suffix&quot;], &quot;sc_category&quot;, item[&quot;sc_cat.sys_id&quot;])">'
+													+ '<img ng-if="item[&quot;sc_cat.homepage_image&quot;]" ng-src="{{::sc_cat.homepage_image}}" style="height:30px; width: auto"/>'
+													+ '<i ng-if="!item[&quot;sc_cat.homepage_image&quot;]" class="fa fa-shopping-cart"></i>{{::sc_cat.title}}</a>'
+												+ '</li>'		
+		
+											+ '</li>'
+		
+											//Featured Knowledge Articles
+											+ '<li class="dropdown-header"> <a class="nav-content-header" href="#">${Featured Knowledge Articles}</a>'
+											+ '<p class="mega-menu-p" ng-if="domain.kb_articles.length == 0">'
+												+ '${There are currently no featured knowledge articles.}'
+											+ '</p>	'
+		
+											+ '<li class="nav-content-item" ng-repeat="article in domain.kb_articles">'
+												+ '<a ng-click="openMenuItem(domain[&quot;portal.url_suffix&quot;], &quot;kb_article&quot;, article[&quot;article.sys_id&quot;])">'
+													+ '<img ng-if="article[&quot;article.image&quot;]" ng-src="{{article[&quot;article.image&quot;]}}" style="height:30px; width: auto"/>'
+													+ '<i ng-if="!article[&quot;article.image&quot;]" class="fa fa-book"></i>{{article[&quot;article.short_description&quot;]}}</a>'
+											+ '</li> '		
+											+ '</li>'
+
+		
+											+ '<li class="dropdown-header"><a href="#" class="nav-content-header">${Featured Knowledge Categories}</a>'
+											+ '<p class="mega-menu-p" ng-if="domain.kb_categories.length == 0">'
+												+ '${There are currently no featured knowledge categories.}'
+											+ '</p>'	
+											+ '</li>'
+		
+											+ '<li class="nav-content-item" ng-repeat="kb_cat in domain.kb_categories">'
+												+ '<a ng-click="openMenuItem(domain[&quot;portal.url_suffix&quot;], &quot;kb_category&quot;, kb_cat.sys_id)">'
+													+ '<i class="fa fa-book"></i>{{kb_cat.label}}</a>'
+											+ '</li>		'
+		
+		
+									+ '</ul>'
+		
+								+ '</div>'		
+		+ '</div>'
+		+ '</div>'
+		+ '',
+
+		controller: function($scope, $rootScope, $location, spUtil, $timeout) {
+			var navClosed = true;
+			
+			$scope.openNav = function() {
+				
+			}
+
+			$scope.closeNav = function() {
+				document.getElementById("cross-portal-side-nav").style.width = "0";
+			}
+
+			$scope.openMenuItem = function(suffix, page, item) {
+				if(page == "kb_category") {
+					$window.location.href = "/"+suffix+"?id="+page+"&kb_category="+item;
+				} else {
+					$window.location.href = "/"+suffix+"?id="+page+"&sys_id="+item;
+				}
+
+			};
+			
+			$scope.toggleNav = function() {
+				if (navClosed) {
+					document.getElementById("cross-portal-side-nav").style.left = "0px";
+				} else {
+					document.getElementById("cross-portal-side-nav").style.left = "-300px";
+				}
+				
+				navClosed = !navClosed;
+			}
+
+		},
+
+		link: function(scope, element, attrs) {
+
+		}
+
+	};
+
+}]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>jon.crane</sys_created_by>
+        <sys_created_on>2017-06-16 19:40:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>14f2a34f4f97f200f58ab4e18110c7ce</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>crossPortalHeaderSideMenu</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_angular_provider_14f2a34f4f97f200f58ab4e18110c7ce</sys_update_name>
+        <sys_updated_by>jon.crane</sys_updated_by>
+        <sys_updated_on>2017-06-17 00:00:31</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+</record_update>

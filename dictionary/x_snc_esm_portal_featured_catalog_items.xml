@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Featured Catalog Items" max_length="40" name="x_snc_esm_portal_featured_catalog_items" type="collection">
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Catalog Item" max_length="32" name="catalog_item" reference="sc_cat_item" type="reference"/>
+        <element label="Department" max_length="32" name="department" reference="x_snc_esm_portal_dept_config" type="reference"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <index name="index">
+            <element name="catalog_item"/>
+        </index>
+        <index name="index2">
+            <element name="department"/>
+        </index>
+    </element>
+</database>

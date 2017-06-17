@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Featured KB Articles" max_length="40" name="x_snc_esm_portal_featured_kb_articles" type="collection">
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Article" max_length="32" name="article" reference="kb_knowledge" type="reference"/>
+        <element label="Department" max_length="32" name="department" reference="x_snc_esm_portal_dept_config" type="reference"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <index name="index">
+            <element name="department"/>
+        </index>
+        <index name="index2">
+            <element name="article"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($window) {
+	/* widget controller */
+	var c = this;
+	
+	//console.log(c.data);
+	
+	c.searchStyle = "none";
+	c.searchIsOpen = false;
+
+	c.openSearch = function() {
+		c.searchStyle = "block";
+		c.searchIsOpen = true;
+	};
+
+	c.closeSearch = function() {
+		c.searchStyle = "none";
+		c.searchIsOpen = false;
+	};
+
+	c.kbRedirect = function(suffix, kbPage) {
+		$window.location.href = "/"+suffix+"?id="+kbPage;
+	};
+
+	c.scRedirect = function(suffix, scPage) {
+		$window.location.href = "/"+suffix+"?id="+scPage;
+	};
+
+	c.openMenuItem = function(suffix, page, item) {
+		if(page == "kb_category") {
+			$window.location.href = "/"+suffix+"?id="+page+"&kb_category="+item;
+		} else {
+			$window.location.href = "/"+suffix+"?id="+page+"&sys_id="+item;
+		}
+
+	};
+
+	c.openRecord = function(suffix, portalPage, tableName, recordId) {
+		//console.log(suffix+ " / type: " + portalPage + " / tableName: " +tableName +" / recordId: "+ recordId);
+		$window.location.href = "/"+suffix+"?id="+portalPage+"&table="+tableName+"&sys_id="+recordId;
+	};
+	
+	c.openRecordList = function(suffix, portalPage) {
+		if(suffix != "csm") {
+		$window.location.href = "/"+suffix+"?id="+portalPage;
+		} else {
+			$window.location.href = "/"+suffix+"?id="+portalPage+"&table=sn_customerservice_case&view=csp";
+		}
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.navbar-domain {
+  transition: 250ms opacity ease-in-out; 
+  -webkit-transition: 250ms opacity ease-in-out; 
+  border: 0;
+  border-bottom: 4px solid $sp-navbar-divider-color;
+}
+
+
+.x-portal-search {
+  width: 400px;
+}
+
+.navbar {
+  min-height: 0;
+}
+
+
+#search-btn {
+  background-color: $brand-primary;
+  color: #fff;
+}
+
+.search-span {
+  font-family: "SourceSansPro", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.mega-menu {
+  z-index: 1000;
+}
+
+.mega-menu-btn {
+  margin-left: 10px;
+  margin-top: 10px;
+  background-color: $brand-primary;
+  color: #fff;
+}
+
+.mega-menu-p {
+  margin-left: 15px;
+}
+
+.mega-menu-btn:hover {
+  background-color: $navbar-inverse-link-hover-color;
+  color: #fff;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.badge-record-counter {
+  color: #fff;
+  background-color: $brand-primary;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>cross-portal-domain-menu</id>
+        <internal>false</internal>
+        <link/>
+        <name>Cross Portal Domain Menu</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	if(!input) {
+		var serviceDomainGR = new GlideRecord('x_snc_ssp_support_portal_domains');
+		serviceDomainGR.addActiveQuery();
+		serviceDomainGR.orderBy('order');
+		serviceDomainGR.query();
+
+		data.domains = [];
+
+		while (serviceDomainGR.next()) {
+			//verify if the user can see the according portal (e.g. HR Portal)
+			if($sp.canReadRecord("sp_portal", serviceDomainGR.getValue("portal"))) {
+				var domain = {};
+				$sp.getRecordDisplayValues(domain, serviceDomainGR, "name, abbreviated_name, background_image, description, glyph, glyph_background_color, portal_page, record_overview, portal.sc_catalog, portal.kb_knowledge_base, portal.url_suffix");
+				$sp.getRecordValues(domain, serviceDomainGR, "sys_id, order, active");
+				domain.catalog_items = getCatalogItems(serviceDomainGR.getUniqueValue());
+				domain.sc_categories = getCatalogCategories(serviceDomainGR.portal.sc_catalog);
+				domain.sc_catalog_page = serviceDomainGR.portal.sc_catalog_page.id.toString() || "sc_home";
+				domain.kb_articles = getKBArticles(serviceDomainGR.getUniqueValue());
+				domain.kb_categories = getKBCategories(serviceDomainGR.portal.kb_knowledge_base);
+				domain.kb_knowledge_page = serviceDomainGR.portal.kb_knowledge_page.id.toString() || "kb_view2";
+				domain.my_records = getRecords(serviceDomainGR.getValue("table"), serviceDomainGR.getValue("conditions"));
+
+				data.domains.push(domain);
+			} 
+		}
+		data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search", {padding_bottom: "0px"});
+	}
+
+	function getCatalogItems(domainSysId) {
+		var domainItems = [];
+
+		var grDomainItems = new GlideRecord("x_snc_ssp_cross_portal_catalog_items");
+		grDomainItems.addQuery("support_domain", domainSysId);
+		grDomainItems.addActiveQuery();
+		grDomainItems.orderBy("order");
+		grDomainItems.setLimit(5);
+		grDomainItems.query();
+		while(grDomainItems.next()) {
+			var domainItem = {};
+			$sp.getRecordDisplayValues(domainItem, grDomainItems, "catalog_item.sys_id, catalog_item.picture, catalog_item.name");
+			domainItems.push(domainItem);			
+		}
+		return domainItems;
+	}
+
+	function getCatalogCategories(catalogId) {
+		var categories = [];
+
+		var grCategories = new GlideRecord("sc_category");
+		grCategories.addQuery("sc_catalog", catalogId);
+		grCategories.addActiveQuery();
+		grCategories.orderBy("title");
+		grCategories.setLimit(5);
+		grCategories.query();
+
+		while(grCategories.next()) {
+			//if the user shouldn't see this category, don't add it to the categories array
+			if (!$sp.canReadRecord("sc_category", grCategories.getUniqueValue())) {				
+				continue;
+			} 
+
+			var category = {};
+			$sp.getRecordDisplayValues(category, grCategories, "sys_id, title, homepage_image");
+			categories.push(category);			
+		}
+		return categories;
+	}
+
+	function getKBArticles(domainSysId) {
+		var domainItems = [];
+
+		var grDomainItems = new GlideRecord("x_snc_ssp_cross_portal_kb_articles");
+		grDomainItems.addQuery("support_domain", domainSysId);
+		grDomainItems.addActiveQuery();
+		grDomainItems.orderBy("order");
+		grDomainItems.setLimit(5);
+		grDomainItems.query();
+		while(grDomainItems.next()) {
+			var domainItem = {};
+			$sp.getRecordDisplayValues(domainItem, grDomainItems, "article.sys_id, article.short_description, article.image");
+			domainItems.push(domainItem);			
+		}
+		return domainItems;
+	}
+
+	function getKBCategories(catalogId) {
+		var categories = [];
+
+		var grCategories = new GlideRecord("kb_category");
+		grCategories.addQuery("parent_id", catalogId);
+		grCategories.addActiveQuery();
+		grCategories.orderBy("label");
+		grCategories.setLimit(5);
+		grCategories.query();
+		while(grCategories.next()) {
+			//if the user shouldn't see this category, don't add it to the categories array
+			if (!$sp.canReadRecord("kb_category", grCategories.getUniqueValue())) {				
+				continue;
+			} 
+
+			var category = {};
+			$sp.getRecordDisplayValues(category, grCategories, "sys_id, label");
+			categories.push(category);			
+		}
+		return categories;
+	}
+
+	function getRecords(table, conditions) {
+		var records = {};
+		var recArr = [];
+
+		//prevent the GlideRecord from failing by making sure we have a table and a query
+		if(table && conditions) {
+
+			//get the count first (limit will manipulate the actual number)
+			var grTableRecCount = new GlideAggregate(table);
+			grTableRecCount.addEncodedQuery(conditions);
+			grTableRecCount.addAggregate('COUNT');
+			grTableRecCount.query();
+			if (grTableRecCount.next())  {
+				records.record_count = grTableRecCount.getAggregate('COUNT');
+			}
+
+			var grTable = new GlideRecord(table);
+			grTable.addEncodedQuery(conditions);
+			grTable.setLimit(5);
+			grTable.orderBy("sys_created_on");
+			grTable.query();
+
+			while(grTable.next()) {
+				var record = {};
+				if(grTable.getValue("short_description") != "") {
+					record.short_desc = grTable.getDisplayValue("short_description");
+				}
+				$sp.getRecordDisplayValues(record, grTable, "number");
+				$sp.getRecordValues(record, grTable, "sys_class_name, sys_id");
+
+				recArr.push(record);
+			}
+			records.recArr = recArr;
+		}
+
+		return records;
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-06-16 16:52:05</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>337cfe474f57f200f58ab4e18110c701</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Cross Portal Domain Menu</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_widget_337cfe474f57f200f58ab4e18110c701</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-16 16:52:23</sys_updated_on>
+        <template><![CDATA[<!-- Navbar -->
+<div class="navbar navbar-default mega-menu navbar-domain" role="navigation">
+  <div class="clearfix"></div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-responsive-collapse mega-menu-inner">
+    <div class="container">
+      <ul class="nav navbar-nav">
+
+        <li class="mega-menu-fullwidth">
+          <a ng-href="/support" class="dropdown-toggle" data-toggle="dropdown">
+            ${Support Portal}
+          </a>
+        </li>
+        <!-- Domain Menus -->
+        <li class="dropdown mega-menu-fullwidth" ng-repeat="domain in c.data.domains">          
+          <a ng-href="/{{domain['portal.url_suffix']}}" class="dropdown-toggle" data-toggle="dropdown">
+            {{domain.name}}
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <div class="mega-menu-content disable-icons">
+                <div class="container">
+                  <div class="row equal-height">
+                    <div class="col-md-4 equal-height-in">
+                      <ul class="list-unstyled equal-height-list">
+                        <li><h3>${Featured Catalog Items}</h3></li>
+                        <p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">
+                          ${There are currently no featured catalog items.}
+                        </p>
+
+                        <!-- Featured Catalog Items -->
+                        <li ng-repeat="item in domain.catalog_items">
+                          <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'sc_cat_item', item['catalog_item.sys_id'])">
+                            <img ng-if="item['catalog_item.picture']" ng-src="{{item['catalog_item.picture']}}" style="height:30px; width: auto"/>
+                            <i ng-if="!item['catalog_item.picture']" class="fa fa-shopping-cart"></i>{{item["catalog_item.name"]}}</a>
+                        </li>                        
+                        <!-- End Featured Catalog Items -->
+
+                        <li><h3>${Featured Catalog Categories}</h3></li>
+                        <p class="mega-menu-p" ng-if="domain.sc_categories.length == 0">
+                          ${There are currently no featured catalog categories.}
+                        </p>
+                        <!-- Catalog Categories -->
+                        <li ng-repeat="sc_cat in domain.sc_categories">
+                          <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'sc_category', sc_cat.sys_id)">
+                            <img ng-if="sc_cat.homepage_image" ng-src="{{sc_cat.homepage_image}}" style="height:30px; width:30px"/>
+                            <i class="fa fa-shopping-cart" ng-if="!sc_cat.homepage_image"></i>{{sc_cat.title}}</a>
+                        </li>
+                        <!-- End Catalog Categories -->
+
+                        <li><button class="btn mega-menu-btn" type="button" ng-click="c.scRedirect(domain['portal.url_suffix'], domain.sc_catalog_page)"><i class="fa fa-shopping-cart"></i> ${View all {{domain.abbreviated_name}} Items}</button></li>
+                      </ul>
+
+                    </div>
+                    <div class="col-md-4 equal-height-in">
+                      <ul class="list-unstyled equal-height-list">
+                        <li ><h3>${Featured Knowledge Articles}</h3></li>
+                        <p class="mega-menu-p" ng-if="domain.kb_articles.length == 0">
+                          ${There are currently no featured knowledge articles.}
+                        </p>
+
+                        <!-- Featured Knowledge Articles -->
+                        <li ng-repeat="article in domain.kb_articles">
+                          <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'kb_article', article['article.sys_id'])">
+                            <img ng-if="article['article.image']" ng-src="{{article['article.image']}}" style="height:30px; width: auto"/>
+                            <i ng-if="!article['article.image']" class="fa fa-book"></i>{{article["article.short_description"]}}</a>
+                        </li>                        
+                        <!-- End Featured Knowledge Articles -->
+
+                        <li><h3>${Featured Knowledge Categories}</h3></li>
+                        <p class="mega-menu-p" ng-if="domain.kb_categories.length == 0">
+                          ${There are currently no featured knowledge categories.}
+                        </p>
+                        <!-- KB Categories -->
+                        <li ng-repeat="kb_cat in domain.kb_categories">
+                          <a ng-click="c.openMenuItem(domain['portal.url_suffix'], 'kb_category', kb_cat.sys_id)">
+                            <i class="fa fa-book"></i>{{kb_cat.label}}</a>
+                        </li>
+                        <!-- End KB Categories -->
+
+                        <li><button class="btn mega-menu-btn" type="button" ng-click="c.kbRedirect(domain['portal.url_suffix'], domain.kb_knowledge_page)"><i class="fa fa-book"></i> ${View all {{domain.abbreviated_name}} Articles}</button></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4 equal-height-in">
+                      <ul class="list-unstyled equal-height-list">                       
+                        <li><h3>${My Records} <span class="badge badge-record-counter rounded">{{domain.my_records.record_count}}</span></h3></li>
+                        <p class="mega-menu-p" ng-if="domain.my_records.length == 0">
+                          ${You have no open records.}
+                        </p>
+
+                        <li ng-repeat="record in domain.my_records.recArr">
+                          <a ng-click="c.openRecord(domain['portal.url_suffix'], domain.portal_page, record.sys_class_name, record.sys_id)">
+                            <i class="fa fa-list"></i>{{record.number}} <span ng-if="record.short_desc">- {{record.short_desc | limitTo: 40}} {{record.short_desc.length > 40 ? '&hellip;' : ''}}</span></a>
+                        </li>
+
+                        <li><button class="btn mega-menu-btn" type="button" ng-click="c.openRecordList(domain['portal.url_suffix'], domain.record_overview)"><i class="fa fa-shopping-cart"></i> ${View all my {{domain.abbreviated_name}} records}</button></li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <!-- End Domain Menus -->
+      </ul>
+
+      <!-- Search Block -->
+      <ul class="nav navbar-nav navbar-border-bottom navbar-right">
+        <li class="no-border">
+          <i class="search search-btn fa fa-search" ng-if="!c.searchIsOpen" ng-click="c.openSearch()"> 
+            <span class="search-span">${Search}</span></i>
+          <i class="search search-btn fa fa-times-circle" ng-if="c.searchIsOpen" ng-click="c.closeSearch()">
+            <span class="search-span">${Close Search}</span></i>
+          <div class="search-open" ng-style="{'display': c.searchStyle}">
+            <div class="input-group">            
+              <sp-widget widget="c.data.typeAheadSearch"></sp-widget>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <!-- End Search Block -->
+    </div><!--/end container-->
+  </div><!--/navbar-collapse-->
+</div>
+<!-- End Navbar -->]]></template>
+    </sp_widget>
+</record_update>

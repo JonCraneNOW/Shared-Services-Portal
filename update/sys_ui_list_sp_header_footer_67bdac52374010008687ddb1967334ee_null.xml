@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="sp_header_footer" relationship="67bdac52374010008687ddb1967334ee" sys_domain="global" table="sys_update_version" version="2" view="">
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sys_update_version</name>
+            <parent>sp_header_footer</parent>
+            <position/>
+            <relationship display_value="Versions">67bdac52374010008687ddb1967334ee</relationship>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>jon.crane</sys_created_by>
+            <sys_created_on>2017-06-16 23:30:27</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>dfa7185b4f5bf200f58ab4e18110c764</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_update_version</sys_name>
+            <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+            <sys_update_name>sys_ui_list_sp_header_footer_67bdac52374010008687ddb1967334ee_null</sys_update_name>
+            <sys_updated_by>jon.crane</sys_updated_by>
+            <sys_updated_on>2017-06-16 23:30:27</sys_updated_on>
+            <sys_user display_value="Jon Crane">87678f724f9fb200f58ab4e18110c71b</sys_user>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

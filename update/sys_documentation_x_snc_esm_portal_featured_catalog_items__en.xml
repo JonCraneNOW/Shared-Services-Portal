@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="" label="Featured Catalog Items" language="en" table="x_snc_esm_portal_featured_catalog_items">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element/>
+            <help/>
+            <hint/>
+            <label>Featured Catalog Items</label>
+            <language>en</language>
+            <name>x_snc_esm_portal_featured_catalog_items</name>
+            <plural>Featured Catalog Items</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>frank.schuster</sys_created_by>
+            <sys_created_on>2017-06-16 16:40:16</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_id>7ec9b6074f57f200f58ab4e18110c795</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Featured Catalog Items</sys_name>
+            <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_esm_portal_featured_catalog_items__en</sys_update_name>
+            <sys_updated_by>frank.schuster</sys_updated_by>
+            <sys_updated_on>2017-06-16 16:40:16</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

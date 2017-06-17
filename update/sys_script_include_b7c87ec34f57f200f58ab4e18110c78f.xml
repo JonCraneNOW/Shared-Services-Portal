@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_esm_portal.PortalDomainConfig</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>PortalDomainConfig</name>
+        <script><![CDATA[var PortalDomainConfig = Class.create();
+PortalDomainConfig.prototype = {
+	initialize: function() {
+	},
+
+	getAllPortals: function() {
+		var domainGR = new GlideRecord('x_snc_esm_portal_dept_config');
+		domainGR.addActiveQuery();
+		domainGR.orderBy('order');
+		domainGR.query();
+
+		var serviceDomains = [];
+
+		while (domainGR.next()) {
+			serviceDomains.push({
+				sys_id: domainGR.getUniqueValue(),
+				name: domainGR.name.getDisplayValue(),
+				portal: {
+					sys_id: domainGR.portal.toString(),
+					url_suffix: domainGR.portal.url_suffix.toString(),
+					kb_knowledge_base: domainGR.portal.kb_knowledge_base.toString(),
+					sqanda_knowledge_base: domainGR.portal.sqanda_knowledge_base.toString(),
+					sc_catalog: domainGR.portal.sc_catalog.toString()
+				}
+			});
+		}
+
+		return serviceDomains;
+	},
+
+	type: 'PortalDomainConfig'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-06-16 16:36:21</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>b7c87ec34f57f200f58ab4e18110c78f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>PortalDomainConfig</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sys_script_include_b7c87ec34f57f200f58ab4e18110c78f</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-16 20:53:15</sys_updated_on>
+    </sys_script_include>
+</record_update>
