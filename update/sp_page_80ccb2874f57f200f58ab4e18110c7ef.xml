@@ -32,7 +32,7 @@ body .padding-top {
         <sys_class_name>sp_page</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:53:17</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>80ccb2874f57f200f58ab4e18110c7ef</sys_id>
         <sys_mod_count>4</sys_mod_count>
         <sys_name>support_home</sys_name>

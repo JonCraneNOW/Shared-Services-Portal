@@ -7,7 +7,7 @@
         <sys_class_name>sp_css_include</sys_class_name>
         <sys_created_by>jon.crane</sys_created_by>
         <sys_created_on>2017-06-16 19:43:33</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>e3b3a74f4f97f200f58ab4e18110c7ad</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>cross-portal-header-side-menu.css</sys_name>

@@ -159,7 +159,7 @@ input::-webkit-input-placeholder {
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:44:20</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>66ba32474f57f200f58ab4e18110c71d</sys_id>
         <sys_mod_count>4</sys_mod_count>
         <sys_name>Cross Portal Jumbotron with Search</sys_name>

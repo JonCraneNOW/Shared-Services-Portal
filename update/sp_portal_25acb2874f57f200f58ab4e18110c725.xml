@@ -39,7 +39,7 @@ $text-muted: #979797;&#13;
         <sys_class_name>sp_portal</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:53:07</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>25acb2874f57f200f58ab4e18110c725</sys_id>
         <sys_mod_count>3</sys_mod_count>
         <sys_name>Support Portal</sys_name>
@@ -59,7 +59,6 @@ $text-muted: #979797;&#13;
         <average_image_color>#0</average_image_color>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
-        <encryption_context/>
         <file_name>logo</file_name>
         <image_height>208</image_height>
         <image_width>587</image_width>

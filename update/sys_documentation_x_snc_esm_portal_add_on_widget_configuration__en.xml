@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="" label="Add-on Widget Configuration" language="en" table="x_snc_esm_portal_add_on_widget_configuration">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element/>
+            <help/>
+            <hint/>
+            <label>Add-on Widget Configuration</label>
+            <language>en</language>
+            <name>x_snc_esm_portal_add_on_widget_configuration</name>
+            <plural>Add-on Widget Configurations</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>jc</sys_created_by>
+            <sys_created_on>2017-06-21 20:44:05</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_id>0b81a53cdbe73200e6a3bb01ef9619c6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Add-on Widget Configuration</sys_name>
+            <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_esm_portal_add_on_widget_configuration__en</sys_update_name>
+            <sys_updated_by>jc</sys_updated_by>
+            <sys_updated_on>2017-06-21 20:44:05</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

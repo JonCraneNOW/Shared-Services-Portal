@@ -3,7 +3,7 @@
     <sp_css action="INSERT_OR_UPDATE">
         <css>/* Style that directive! */&#13;
 .sidenav-button {&#13;
-  margin-top: 6%;&#13;
+  margin-top: 1.1%;&#13;
   margin-left: 5px;&#13;
   font-size: 24px;&#13;
   color: #fff;&#13;
@@ -12,8 +12,8 @@
 /* The side navigation menu */&#13;
 .sidenav {&#13;
   height: 100%; /* 100% Full-height */&#13;
-  width: 300px; &#13;
-  left: -300px;&#13;
+  width: 350px; &#13;
+  left: -350px;&#13;
   position: fixed; /* Stay in place */&#13;
   z-index: 1; /* Stay on top */&#13;
   top: 0;&#13;
@@ -150,6 +150,11 @@
   -ms-transition: all 1s ease;&#13;
   transition: all 1s ease;&#13;
 }&#13;
+.close-menu {&#13;
+    float: right;&#13;
+    text-align: right;&#13;
+    padding: 10px;&#13;
+}&#13;
 &#13;
 @media (max-width: 767px) {&#13;
   .nav-side-menu {&#13;
@@ -193,14 +198,14 @@ body {&#13;
         <sys_created_on>2017-06-16 19:43:33</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>10b3eb4f4f97f200f58ab4e18110c72b</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>cross-portal-header-side-menu.css</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_css_10b3eb4f4f97f200f58ab4e18110c72b</sys_update_name>
-        <sys_updated_by>jon.crane</sys_updated_by>
-        <sys_updated_on>2017-06-16 19:43:33</sys_updated_on>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-22 05:29:24</sys_updated_on>
     </sp_css>
 </record_update>

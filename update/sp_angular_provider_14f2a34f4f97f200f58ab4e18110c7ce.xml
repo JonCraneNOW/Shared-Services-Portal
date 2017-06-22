@@ -12,7 +12,7 @@
 		+ '<div id="cross-portal-side-nav" class="sidenav">'
 		
 		+ '<div class="nav-side-menu">'
-    + '<div class="brand"><img class="nav-logo" ng-src="{{::portal.logo}}" /></div>'
+    + '<div class="brand"><img class="nav-logo" ng-src="{{::portal.logo}}" /> <i ng-click="toggleNav()" class="close-menu fa fa-close"></i> </div>'
         + '<div class="menu-list">'
             + '<ul id="menu-content" class="menu-content collapse out">'
                 + '<li style="border-left: 3px solid {{::domain.glyph_background_color }};">'
@@ -93,10 +93,6 @@
 
 		controller: function($scope, $rootScope, $location, spUtil, $timeout) {
 			var navClosed = true;
-			
-			$scope.openNav = function() {
-				
-			}
 
 			$scope.closeNav = function() {
 				document.getElementById("cross-portal-side-nav").style.width = "0";
@@ -115,7 +111,7 @@
 				if (navClosed) {
 					document.getElementById("cross-portal-side-nav").style.left = "0px";
 				} else {
-					document.getElementById("cross-portal-side-nav").style.left = "-300px";
+					document.getElementById("cross-portal-side-nav").style.left = "-350px";
 				}
 				
 				navClosed = !navClosed;
@@ -135,15 +131,15 @@
         <sys_created_on>2017-06-16 19:40:42</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>14f2a34f4f97f200f58ab4e18110c7ce</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>crossPortalHeaderSideMenu</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_angular_provider_14f2a34f4f97f200f58ab4e18110c7ce</sys_update_name>
-        <sys_updated_by>jon.crane</sys_updated_by>
-        <sys_updated_on>2017-06-17 00:00:31</sys_updated_on>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-22 05:30:50</sys_updated_on>
         <type>directive</type>
     </sp_angular_provider>
 </record_update>

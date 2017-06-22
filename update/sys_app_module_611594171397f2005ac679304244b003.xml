@@ -2,7 +2,7 @@
 <record_update sys_domain="global" table="sys_app_module">
     <sys_app_module action="INSERT_OR_UPDATE">
         <active>true</active>
-        <application display_value="Service Portal">1c00c11047322100ba13a5554ee490f2</application>
+        <application display_value="Shared Services Portal">46e9d4bcdb673200e6a3bb01ef9619b7</application>
         <assessment/>
         <content_page/>
         <device_type/>
@@ -15,9 +15,9 @@
         <mobile_title>Shared Service Menu Properties</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name/>
-        <order>75</order>
+        <order>6000</order>
         <override_menu_roles>false</override_menu_roles>
-        <query>system_properties_ui.do?sysparm_title=Side Menu Properties&amp;sysparm_category=sidemenu_style</query>
+        <query>system_properties_ui.do?sysparm_category=Shared%20Services%20Portal&amp;sysparm_title=Shared%20Services%20Portal%20Properties&amp;sysparm_domain_restore=false&amp;sysparm_stack=no</query>
         <report/>
         <roles/>
         <survey/>
@@ -29,18 +29,18 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>611594171397f2005ac679304244b003</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Shared Service Menu Properties</sys_name>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Shared Services Portal Properties</sys_name>
         <sys_overrides/>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sys_app_module_611594171397f2005ac679304244b003</sys_update_name>
-        <sys_updated_by>matt.dodd</sys_updated_by>
-        <sys_updated_on>2017-06-16 23:20:46</sys_updated_on>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-22 04:50:01</sys_updated_on>
         <timeline_page/>
-        <title>Shared Service Menu Properties</title>
+        <title>Shared Services Portal Properties</title>
         <uncancelable>false</uncancelable>
         <view_name/>
         <window_name/>

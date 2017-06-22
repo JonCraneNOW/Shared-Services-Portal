@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_snc_esm_portal_add_on_widget_configuration</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_snc_esm_portal_add_on_widget_configuration">announcement_widgetCHANGESTOtrue^ORsticky_side_button_widgetCHANGESTOtrue^ORlanguage_picker_widgetCHANGESTOtrue^EQ<item endquery="false" field="announcement_widget" goto="false" newquery="false" operator="CHANGESTO" or="false" value="true"/>
+            <item endquery="false" field="sticky_side_button_widget" goto="false" newquery="false" operator="CHANGESTO" or="true" value="true"/>
+            <item endquery="false" field="language_picker_widget" goto="false" newquery="false" operator="CHANGESTO" or="true" value="true"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Validate if widgets exist before save</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	/**********
+	Validate if a widget exists in the sp_widget table. If not, and the user attempts to add it as an add-on widget, an
+	error message is thrown and the widget is unable to be selected. In this case, the checkbox is reverted back to false.
+	**********/
+	
+	var missingWidgets = [];
+	
+	if (current.announcement_widget.changesTo('true'))
+		current.announcement_widget = validateWidget('announcements-header');
+
+	if (current.language_picker_widget.changesTo('true'))
+		current.language_picker_widget = validateWidget('language-picker');
+
+	if (current.sticky_side_button_widget.changesTo('true')) 
+		current.sticky_side_button_widget = validateWidget('sticky-side-buttons');
+
+	if (missingWidgets.length > 0){
+		gs.addErrorMessage('Some add-on widgets were unable to be loaded because they are not found in the Widget (sp_widget) table: ' + missingWidgets);
+	}
+
+	function validateWidget(widgetName) {
+		var w = new GlideRecord('sp_widget');
+		if (!w.get('id', widgetName)) {
+			missingWidgets.push(widgetName);
+			return false;
+		} else 
+			return true;
+	}
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>jc</sys_created_by>
+        <sys_created_on>2017-06-22 03:35:54</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>23be3234dbab3200e6a3bb01ef961986</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Validate if widgets exist before save</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sys_script_23be3234dbab3200e6a3bb01ef961986</sys_update_name>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-22 03:52:12</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=23be3234dbab3200e6a3bb01ef961986"/>
+</record_update>

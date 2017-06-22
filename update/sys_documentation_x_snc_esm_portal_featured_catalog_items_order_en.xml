@@ -12,7 +12,7 @@
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>frank.schuster</sys_created_by>
             <sys_created_on>2017-06-16 16:40:16</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_id>72c9b6074f57f200f58ab4e18110c79d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Order</sys_name>

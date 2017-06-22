@@ -21,7 +21,7 @@
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:18:54</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>f532728f4f17f200f58ab4e18110c7bf</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Shared Services Department Configuration</sys_name>

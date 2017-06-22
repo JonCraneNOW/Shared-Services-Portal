@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Add-on Widget Configuration" max_length="40" name="x_snc_esm_portal_add_on_widget_configuration" type="collection">
+        <element label="Announcement widget" max_length="40" name="announcement_widget" type="boolean"/>
+        <element label="Language picker widget" max_length="40" name="language_picker_widget" type="boolean"/>
+        <element display="true" label="Service portal" max_length="32" name="service_portal" reference="sp_portal" text_index="true" type="reference"/>
+        <element label="Sticky side button widget" max_length="40" name="sticky_side_button_widget" type="boolean"/>
+        <index name="index">
+            <element name="service_portal"/>
+        </index>
+    </element>
+</database>

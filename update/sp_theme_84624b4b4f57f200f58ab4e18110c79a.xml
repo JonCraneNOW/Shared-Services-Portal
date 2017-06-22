@@ -17,7 +17,7 @@ $ssp-jumbotron-search-text-color: #fff;&#13;
         <sys_class_name>sp_theme</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 17:17:58</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>84624b4b4f57f200f58ab4e18110c79a</sys_id>
         <sys_mod_count>1</sys_mod_count>
         <sys_name>Shared Services Theme</sys_name>

@@ -102,7 +102,7 @@ CrossPortalSearch.prototype = {
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:35:53</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>e4c87ac34f57f200f58ab4e18110c7e4</sys_id>
         <sys_mod_count>1</sys_mod_count>
         <sys_name>CrossPortalSearch</sys_name>

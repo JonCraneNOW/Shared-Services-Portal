@@ -4,7 +4,7 @@
         <sys_class_name>sys_security_acl_role</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:40:16</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>76c9b6074f57f200f58ab4e18110c787</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_snc_esm_portal_featured_catalog_items.x_snc_esm_portal.shared_services_department_configuration_user</sys_name>

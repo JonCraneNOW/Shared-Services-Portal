@@ -52,8 +52,8 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:39:00</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
-        <sys_id>bf39fec34f57f200f58ab4e18110c78b</sys_id>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6a517da4db633200e6a3bb01ef961961</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Active</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
@@ -61,8 +61,8 @@
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sys_dictionary_x_snc_esm_portal_featured_kb_articles_active</sys_update_name>
-        <sys_updated_by>frank.schuster</sys_updated_by>
-        <sys_updated_on>2017-06-16 16:39:00</sys_updated_on>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2017-06-21 03:14:50</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

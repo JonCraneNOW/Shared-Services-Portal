@@ -7,7 +7,7 @@
         <sys_class_name>m2m_sp_theme_css_include</sys_class_name>
         <sys_created_by>jon.crane</sys_created_by>
         <sys_created_on>2017-06-16 19:43:16</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>13a3ab4f4f97f200f58ab4e18110c7cb</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>cross-portal-header-side-menu.css.Shared Services Theme</sys_name>

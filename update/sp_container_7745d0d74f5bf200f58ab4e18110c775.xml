@@ -14,7 +14,7 @@
         <sys_class_name>sp_container</sys_class_name>
         <sys_created_by>jon.crane</sys_created_by>
         <sys_created_on>2017-06-16 23:20:06</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>7745d0d74f5bf200f58ab4e18110c775</sys_id>
         <sys_mod_count>4</sys_mod_count>
         <sys_name>Support Home - Container 2</sys_name>
@@ -31,7 +31,6 @@
         <average_image_color>#e8f0f7</average_image_color>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
-        <encryption_context/>
         <file_name>background_image</file_name>
         <image_height>889</image_height>
         <image_width>1440</image_width>
