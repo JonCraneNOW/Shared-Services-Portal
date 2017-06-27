@@ -163,6 +163,7 @@ input[name="q"] {
 	data.searchType = $sp.getParameter("t");
 	data.results = [];
 	data.searchMsg = gs.getMessage("Search");
+	
 	data.limit = options.limit || 15;
 	var textQuery = '123TEXTQUERY321';
 	data.service_domains = new PortalDomainConfig().getAllPortals();
@@ -171,7 +172,6 @@ input[name="q"] {
 		return;
 
 	data.q = input.q;
-
 
 	// NOTE: No support sp_search_group, cannot access from non-global scope :(
 	var searchProcessor = new CrossPortalSearch();
@@ -184,7 +184,8 @@ input[name="q"] {
 	if (data.sqandaEnabled)
 		getQuestions();
 
-
+	//$sp.log(data.results)
+	
 	// typeahead search generates multiple "Your text query contained only
 	// common words..." msgs, we don't want them
 	//	gs.flushMessages();
@@ -269,17 +270,17 @@ input[name="q"] {
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:50:27</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>bf1c3a474f57f200f58ab4e18110c750</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Cross Portal Typeahead Search Mini</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_widget_bf1c3a474f57f200f58ab4e18110c750</sys_update_name>
-        <sys_updated_by>frank.schuster</sys_updated_by>
-        <sys_updated_on>2017-06-16 16:50:57</sys_updated_on>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-27 19:18:13</sys_updated_on>
         <template><![CDATA[<form method="get" action="?" ng-style="{'padding-bottom': c.options.padding_bottom}">
   <input type="hidden" name="id" value="enterprise_search"/>
   <input type="hidden" name="t" value="{{data.searchType}}"/>
@@ -293,7 +294,7 @@ input[name="q"] {
            uib-typeahead="item as item.label for item in c.getResults($viewValue)"
            typeahead-focus-first="false"
            typeahead-on-select="c.onSelect($item, $model, $label)"
-           typeahead-template-url="x_snc_ssp_typeahead_search_item_mini" class="form-control input-typeahead input-mini">
+           typeahead-template-url="x_snc_esm_portal_typeahead_search_item_mini" class="form-control input-typeahead input-mini">
 
   </div>
 </form>]]></template>

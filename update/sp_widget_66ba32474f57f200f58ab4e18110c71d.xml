@@ -140,7 +140,7 @@ input::-webkit-input-placeholder {
 	data.search_placeholder_text = options.search_placeholder_text;
 	data.background_image = getImage(options.background_image);
 
-	data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search-global", {placeholder: data.search_placeholder_text.toString()});
+	data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search", {placeholder: data.search_placeholder_text.toString()});
 
 
 	function getImage(imageId) {
@@ -159,17 +159,17 @@ input::-webkit-input-placeholder {
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:44:20</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>66ba32474f57f200f58ab4e18110c71d</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Cross Portal Jumbotron with Search</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_widget_66ba32474f57f200f58ab4e18110c71d</sys_update_name>
-        <sys_updated_by>frank.schuster</sys_updated_by>
-        <sys_updated_on>2017-06-16 23:55:39</sys_updated_on>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-22 06:14:28</sys_updated_on>
         <template><![CDATA[<div class="jumbotron hero-technology" 
      ng-style="{'background-image':'url({{c.data.background_image}})'}">
   <h1 class="hero-title" ng-if="c.data.title">{{::c.data.title}}</h1>

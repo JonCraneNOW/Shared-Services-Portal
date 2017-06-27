@@ -141,9 +141,7 @@ input[name="q"] {
         <roles/>
         <script><![CDATA[(function() {
 	data.searchType = $sp.getParameter("t");
-	data.results = [];
-	//data.searchMsg = gs.getMessage("Search");
-	
+	data.results = [];	
 	data.searchMsg = options.placeholder ? gs.getMessage(options.placeholder) : gs.getMessage("Search")
 	
 	data.limit = options.limit || 15;
@@ -154,6 +152,7 @@ input[name="q"] {
 		return;
 
 	data.q = input.q;
+
 
 
 	// NOTE: No support sp_search_group, cannot access from non-global scope :(
@@ -252,17 +251,17 @@ input[name="q"] {
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:46:42</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>094bf6474f57f200f58ab4e18110c71d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Cross Portal Typeahead Search</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_widget_094bf6474f57f200f58ab4e18110c71d</sys_update_name>
-        <sys_updated_by>frank.schuster</sys_updated_by>
-        <sys_updated_on>2017-06-16 16:47:52</sys_updated_on>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-27 19:15:08</sys_updated_on>
         <template><![CDATA[<form method="get" action="?" ng-style="{'padding-bottom': c.options.padding_bottom}">
   <input type="hidden" name="id" value="enterprise_search"/>
   <input type="hidden" name="t" value="{{data.searchType}}"/>

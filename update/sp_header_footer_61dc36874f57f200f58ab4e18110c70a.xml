@@ -3,7 +3,7 @@
     <sp_header_footer action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function ($rootScope, $window, $scope, spUtil, cabrillo, $timeout, CrossPortalHeaderUtils) {
 	var c = this;
-	//console.log(c.data)
+	console.log(c.data)
 	
 	c.data.isMobile = CrossPortalHeaderUtils.isMobile();
 
@@ -264,17 +264,20 @@ body {
 	/* This is populated from records in the x_snc_esm_portal_add_on_widget_configuration table */
 	var WidgetConfig = CrossPortalHeader.getAddOnWidgetConfig($sp.getPortalRecord())
 	data.announcementWidget = WidgetConfig.announcement_widget == 'true' ? $sp.getWidgetFromInstance("announcement-header-instance") : false;
+	data.announcementPicker = WidgetConfig.announcement_widget == 'true' ? $sp.getWidget("announcement-picker") : false;
+	
+	
 	data.languagePicker = WidgetConfig.language_picker_widget == 'true' ? $sp.getWidget("language-picker") : false;
 	data.sideButtons = WidgetConfig.sticky_side_button_widget == 'true' ? $sp.getWidgetFromInstance("sticky-side-buttons-embedded") : false;
 	
 	/* Other widgets and options */
 	data.loginWidget = $sp.getWidgetFromInstance('login-modal');
 	//data.languagePicker = $sp.getWidget("language-picker");
-	data.announcementPicker = $sp.getWidget("announcement-picker");
+	//data.announcementPicker = $sp.getWidget("announcement-picker");
 	//data.sideButtons = $sp.getWidgetFromInstance("sticky-side-buttons-embedded");
 	//data.announcementWidget = $sp.getWidgetFromInstance("announcement-header-instance");
 	data.favoritesHeart = $sp.getWidgetFromInstance("favorites-heart");
-	data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search-mini-global", {padding_bottom: "0px"});
+	data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search-mini", {padding_bottom: "0px"});
 	data.sideNav = $sp.getWidget("cross-portal-side-menu");
 	data.menuStyle = gs.getProperty('x_snc_esm_portal.esm.portal.menu.style');
 })();]]></script>
@@ -284,7 +287,7 @@ body {
         <sys_created_on>2017-06-16 16:54:38</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>61dc36874f57f200f58ab4e18110c70a</sys_id>
-        <sys_mod_count>48</sys_mod_count>
+        <sys_mod_count>51</sys_mod_count>
         <sys_name>Cross Portal Header</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
@@ -292,7 +295,7 @@ body {
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_header_footer_61dc36874f57f200f58ab4e18110c70a</sys_update_name>
         <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-22 04:48:36</sys_updated_on>
+        <sys_updated_on>2017-06-27 19:23:39</sys_updated_on>
         <template><![CDATA[<div class="announcement"> 
   <sp-widget ng-if="c.data.announcementWidget" widget="c.data.announcementWidget"></sp-widget>
 </div>
@@ -332,7 +335,7 @@ body {
         <li ng-if="::data.connect_support_queue_id"><a href ng-click="openPopUp()">${Live Chat}</a></li>
 
         <li class="embedded-list-menu">
-          <sp-widget widget="c.data.announcementPicker"></sp-widget>
+          <sp-widget ng-if="c.data.announcementPicker" widget="c.data.announcementPicker"></sp-widget>
         </li>
         <li class="embedded-list-menu">
           <sp-widget ng-if="c.data.languagePicker" widget="c.data.languagePicker"></sp-widget>
