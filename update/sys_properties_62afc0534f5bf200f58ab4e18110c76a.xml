@@ -13,17 +13,17 @@
         <sys_created_on>2017-06-16 22:57:50</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>62afc0534f5bf200f58ab4e18110c76a</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>x_snc_esm_portal.esm.portal.menu.style</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sys_properties_62afc0534f5bf200f58ab4e18110c76a</sys_update_name>
-        <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-22 04:49:32</sys_updated_on>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-30 01:04:12</sys_updated_on>
         <type>choicelist</type>
-        <value>sidemenu</value>
+        <value>megamenu</value>
         <write_roles/>
     </sys_properties>
     <sys_translated_text action="delete_multiple" query="documentkey=62afc0534f5bf200f58ab4e18110c76a"/>

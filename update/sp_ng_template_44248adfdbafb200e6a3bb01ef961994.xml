@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>sidemenu</id>
+        <sp_widget display_value="Cross Portal Header">61dc36874f57f200f58ab4e18110c70a</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>jc</sys_created_by>
+        <sys_created_on>2017-06-29 17:39:59</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>44248adfdbafb200e6a3bb01ef961994</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>sidemenu</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_ng_template_44248adfdbafb200e6a3bb01ef961994</sys_update_name>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-29 22:50:40</sys_updated_on>
+        <template><![CDATA[<span class="sidenav-button"><i ng-click="toggleNav()" class="fa fa-align-left sidenav-button hidden-xs" aria-hidden="true"></i></span>
+
+<div id="cross-portal-side-nav" class="sidenav">
+  <div class="nav-side-menu">
+    <div class="brand"><img class="nav-logo" ng-src="{{::portal.logo}}" /> <i ng-click="toggleNav()" class="close-menu fa fa-close"></i> </div>
+    <div class="menu-list">
+      <ul id="menu-content" class="menu-content collapse out">
+        <li style="border-left: 3px solid {{::domain.glyph_background_color }};">
+          <a ng-href="/support" >
+            <i class="fa fa-life-ring fa-lg" ></i> ${Support Portal}
+          </a>
+        </li>
+
+        <div ng-repeat="domain in c.data.domains">
+          <li data-toggle="collapse" data-target="#{{::domain.abbreviated_name}}" class="collapsed" style="border-left: 3px solid {{::domain.glyph_background_color }};">
+            <a href="#"><i class="fa fa-{{::domain.glyph }} fa-lg"></i> {{::domain.name }} <span class="arrow"></span></a>
+          </li>
+
+          <ul class="sub-menu collapse" id="{{::domain.abbreviated_name}}">
+
+            <li><a class="nav-content-header" href="/{{::domain['portal.url_suffix']}}">{{::domain.name}} Portal</a></li>
+
+            <li class="dropdown-header"> 
+              <a class="nav-content-header" href="#">${Featured Catalog Items}</a>
+              <p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">
+                ${There are currently no featured catalog items.}
+              </p>
+
+            <li class="nav-content-item" ng-repeat="item in domain.catalog_items">
+              <a ng-click="openMenuItem(domain['portal.url_suffix'], 'sc_cat_item', item['catalog_item.sys_id'])">
+                <!-- <img ng-if="item['catalog_item.picture']" ng-src="{{::item['catalog_item.picture']}}" style="height:30px; width: auto"/> -->
+                <i class="fa fa-shopping-cart"></i>{{::item['catalog_item.name']}}</a>
+            </li>
+            </li>
+
+          <li><a class="nav-content-header" href="#">${Featured Catalog Categories}</a>
+            <p class="mega-menu-p" ng-if="domain.sc_categories.length == 0">
+              ${There are currently no featured catalog categories.}'
+            </p>
+
+          <li class="nav-content-item" ng-repeat="sc_cat in domain.sc_categories">
+            <a ng-click="openMenuItem(domain['portal.url_suffix'], 'sc_category', sc_cat.sys_id)">
+              <img ng-if="item['sc_cat.homepage_image']" ng-src="{{::sc_cat.homepage_image}}" style="height:30px; width: auto"/>
+              <i ng-if="!item['sc_cat.homepage_image']" class="fa fa-shopping-cart"></i>{{::sc_cat.title}}</a>
+          </li>		
+
+          </li>
+
+        <li class="dropdown-header"> <a class="nav-content-header" href="#">${Featured Knowledge Articles}</a>
+          <p class="mega-menu-p" ng-if="domain.kb_articles.length == 0">
+            ${There are currently no featured knowledge articles.}
+          </p>
+
+        <li class="nav-content-item" ng-repeat="article in domain.kb_articles">
+          <a ng-click="openMenuItem(domain['portal.url_suffix'], 'kb_article', article['article.sys_id'])">
+            <img ng-if="article['article.image']" ng-src="{{article['article.image']}}" style="height:30px; width: auto"/>
+            <i ng-if="!article['article.image']" class="fa fa-book"></i>{{article['article.short_description']}}</a>
+        </li>
+        </li>
+
+
+      <li class="dropdown-header"><a href="#" class="nav-content-header">${Featured Knowledge Categories}</a>
+        <p class="mega-menu-p" ng-if="domain.kb_categories.length == 0">
+          ${There are currently no featured knowledge categories.}'
+        </p>	
+      </li>
+
+      <li class="nav-content-item" ng-repeat="kb_cat in domain.kb_categories">
+        <a ng-click="openMenuItem(domain['portal.url_suffix'], 'kb_category', kb_cat.sys_id)">
+          <i class="fa fa-book"></i>{{kb_cat.label}}</a>
+      </li>
+
+
+      </ul>
+
+  </div>		
+</div>
+</div>]]></template>
+    </sp_ng_template>
+</record_update>

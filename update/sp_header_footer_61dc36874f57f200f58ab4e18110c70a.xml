@@ -3,14 +3,33 @@
     <sp_header_footer action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function ($rootScope, $window, $scope, spUtil, cabrillo, $timeout, CrossPortalHeaderUtils) {
 	var c = this;
-	console.log(c.data)
 	
-	c.data.isMobile = CrossPortalHeaderUtils.isMobile();
+	c.data.mobile = {
+		isMobileSize : CrossPortalHeaderUtils.isMobileSize(),
+		isMobileDevice: CrossPortalHeaderUtils.isMobileDevice(),
+		bootstrapSize : CrossPortalHeaderUtils.bootstrapSize
+	}
 
-	$scope.userID = $scope.user.sys_id;
+	console.log(c.data);
 	
+	$scope.userID = $scope.user.sys_id;
+
 	if (cabrillo.isNative())
 		$scope.isViewNative = true;
+
+	$scope.loadHover = function() {
+		if (!$scope.isViewNative ){
+			$(".mega-dropdown").hover(            
+				function() {
+					$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown(100);
+					$(this).toggleClass('open');        
+				},
+				function() {
+					$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp(100);
+					$(this).toggleClass('open');       
+				});
+		}
+	};
 
 	$scope.openPopUp = function() {
 		var url = "$chat_support.do?queueID=" + $scope.data.connect_support_queue_id;
@@ -40,6 +59,73 @@
 
 		return false;
 	};
+
+	/*** Side nav ***/
+	var navClosed = true;
+
+	$scope.closeNav = function() {
+		document.getElementById("cross-portal-side-nav").style.width = "0";
+	}
+
+	$scope.openMenuItem = function(suffix, page, item) {
+		if(page == "kb_category") {
+			$window.location.href = "/"+suffix+"?id="+page+"&kb_category="+item;
+		} else {
+			$window.location.href = "/"+suffix+"?id="+page+"&sys_id="+item;
+		}
+
+	};
+
+	$scope.toggleNav = function() {
+		if (navClosed) {
+			document.getElementById("cross-portal-side-nav").style.left = "0px";
+		} else {
+			document.getElementById("cross-portal-side-nav").style.left = "-350px";
+		}
+		navClosed = !navClosed;
+	};
+	/*** End side nav ***/
+
+	$scope.kbRedirect = function(suffix, kbPage) {
+		$window.location.href = "/"+suffix+"?id="+kbPage;
+	};
+
+	$scope.scRedirect = function(suffix, scPage) {
+		$window.location.href = "/"+suffix+"?id="+scPage;
+	};
+
+	$scope.openMenuItem = function(suffix, page, item) {
+		if(page == "kb_category") {
+			$window.location.href = "/"+suffix+"?id="+page+"&kb_category="+item;
+		} else {
+			$window.location.href = "/"+suffix+"?id="+page+"&sys_id="+item;
+		}
+	};
+
+	$scope.openRecord = function(suffix, portalPage, tableName, recordId) {
+		$window.location.href = "/"+suffix+"?id="+portalPage+"&table="+tableName+"&sys_id="+recordId;
+	};
+
+	$scope.openRecordList = function(suffix, portalPage) {
+		if(suffix != "csm") {
+			$window.location.href = "/"+suffix+"?id="+portalPage;
+		} else {
+			$window.location.href = "/"+suffix+"?id="+portalPage+"&table=sn_customerservice_case&view=csp";
+		}
+	};
+	
+	getMenuType = function(style, size) {
+		if (size == 'xs')
+			return 'megamenu';
+
+		if (size == 'sm' || size == 'md')
+			return 'sidemenu';
+
+		return style + '';
+	}
+	
+	c.data.menuType = getMenuType(c.data.menuStyle, c.data.mobile.bootstrapSize);
+
 }]]></client_script>
         <controller_as>c</controller_as>
         <css>.navbar-inverse .navbar-toggle {
@@ -106,11 +192,11 @@ nav{
 }
 
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 body {
-  font-family: 'Helvetica Neue', 'SourceSansPro', 'Open Sans', 'sans-serif';
-  font-weight: 200;
+  //font-family: 'Helvetica Neue', 'SourceSansPro', 'Open Sans', 'sans-serif';
+  //font-weight: 200;
 }
+
 .mega-dropdown {
   position: static !important;
 }
@@ -140,7 +226,6 @@ body {
 
 .ssp-domain-name {
   font-size: 14px !important; 
-  color: $navbar-inverse-link-color !important;
 }
 
 .mega-dropdown-menu .dropdown-header {
@@ -257,29 +342,23 @@ body {
 			}
 		}
 	}
-	
+
 	/* Object that drives overall menu behavior, options, links, etc.. */
 	data.domains = CrossPortalHeader.getContent();
-	
+
 	/* This is populated from records in the x_snc_esm_portal_add_on_widget_configuration table */
-	var WidgetConfig = CrossPortalHeader.getAddOnWidgetConfig($sp.getPortalRecord())
+	var WidgetConfig = CrossPortalHeader.getAddOnWidgetConfig($sp.getPortalRecord());
 	data.announcementWidget = WidgetConfig.announcement_widget == 'true' ? $sp.getWidgetFromInstance("announcement-header-instance") : false;
 	data.announcementPicker = WidgetConfig.announcement_widget == 'true' ? $sp.getWidget("announcement-picker") : false;
-	
-	
 	data.languagePicker = WidgetConfig.language_picker_widget == 'true' ? $sp.getWidget("language-picker") : false;
 	data.sideButtons = WidgetConfig.sticky_side_button_widget == 'true' ? $sp.getWidgetFromInstance("sticky-side-buttons-embedded") : false;
-	
+
 	/* Other widgets and options */
 	data.loginWidget = $sp.getWidgetFromInstance('login-modal');
-	//data.languagePicker = $sp.getWidget("language-picker");
-	//data.announcementPicker = $sp.getWidget("announcement-picker");
-	//data.sideButtons = $sp.getWidgetFromInstance("sticky-side-buttons-embedded");
-	//data.announcementWidget = $sp.getWidgetFromInstance("announcement-header-instance");
-	data.favoritesHeart = $sp.getWidgetFromInstance("favorites-heart");
+	data.favoritesHeart = $sp.getWidgetFromInstance("favorites-heart-dropdown");
 	data.typeAheadSearch = $sp.getWidget("cross-portal-typeahead-search-mini", {padding_bottom: "0px"});
-	data.sideNav = $sp.getWidget("cross-portal-side-menu");
 	data.menuStyle = gs.getProperty('x_snc_esm_portal.esm.portal.menu.style');
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_header_footer</sys_class_name>
@@ -287,7 +366,7 @@ body {
         <sys_created_on>2017-06-16 16:54:38</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>61dc36874f57f200f58ab4e18110c70a</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>135</sys_mod_count>
         <sys_name>Cross Portal Header</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
@@ -295,16 +374,15 @@ body {
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_header_footer_61dc36874f57f200f58ab4e18110c70a</sys_update_name>
         <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-27 19:23:39</sys_updated_on>
-        <template><![CDATA[<div class="announcement"> 
-  <sp-widget ng-if="c.data.announcementWidget" widget="c.data.announcementWidget"></sp-widget>
+        <sys_updated_on>2017-06-30 19:39:23</sys_updated_on>
+        <template><![CDATA[<div class="announcement" ng-if="c.data.announcementWidget"> 
+  <sp-widget widget="c.data.announcementWidget"></sp-widget>
+</div>
+<div ng-if="c.data.sideButtons && !c.data.mobile.isMobileDevice">
+  <sp-widget widget="c.data.sideButtons"></sp-widget>
 </div>
 
 <div>
-  <div>
-    <sp-widget ng-if="c.data.sideButtons" widget="c.data.sideButtons"></sp-widget>
-  </div>
-
   <nav class="navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}"
        role="navigation">
 
@@ -323,22 +401,23 @@ body {
     </div>
 
     <div sp-navbar-toggle="" class="collapse navbar-collapse" id="sp-nav-bar">
-      <cross-portal-header-side-menu ng-if="c.data.menuStyle == 'sidemenu'" data="c.data.domains" portal="portal"></cross-portal-header-side-menu> 
-      <cross-portal-header-mega-menu ng-if="c.data.menuStyle == 'megamenu' || c.data.isMobile" data="c.data.domains" portal="portal"></cross-portal-header-mega-menu> <!--   -->
-      
+      <!-- Menu inclusions -->
+      <span ng-include="c.data.menuType" />
+      <!-- End menus -->
+
       <ul ng-if="::(!user.logged_in && page.id != portal.login_page_dv && !data.hasLogin)" class="nav navbar-nav navbar-right">
         <li><a href ng-click="openLogin()">${Login}</a></li>
       </ul>
-      
+
       <ul ng-if="::user.logged_in" class="nav navbar-nav navbar-right">
         <!-- chat, avatar, and logout -->
         <li ng-if="::data.connect_support_queue_id"><a href ng-click="openPopUp()">${Live Chat}</a></li>
 
-        <li class="embedded-list-menu">
-          <sp-widget ng-if="c.data.announcementPicker" widget="c.data.announcementPicker"></sp-widget>
+        <li class="embedded-list-menu" ng-if="c.data.announcementPicker">
+          <sp-widget widget="c.data.announcementPicker"></sp-widget>
         </li>
-        <li class="embedded-list-menu">
-          <sp-widget ng-if="c.data.languagePicker" widget="c.data.languagePicker"></sp-widget>
+        <li class="embedded-list-menu" ng-if="c.data.languagePicker">
+          <sp-widget widget="c.data.languagePicker"></sp-widget>
         </li>
         <li class="embedded-list-menu">
           <sp-widget widget="c.data.favoritesHeart"></sp-widget>
@@ -356,7 +435,7 @@ body {
         <li class="visible-xs-block"><a ng-href="?id=user_profile&sys_id={{::user.sys_id}}"><span class="navbar-avatar"><sn-avatar class="avatar-small-medium" primary="userID" /></span>{{::user.name}}</a></li>
         <li class="visible-xs-block"><a href="{{::portal.logoutUrl}}">${Logout}</a></li>
       </ul>
-      
+
       <ul class="nav navbar-nav navbar-border-bottom navbar-right">
         <li class="no-border">
           <div class="search-open">
@@ -368,9 +447,6 @@ body {
       </ul>
     </div>
   </nav>  
-</div>
-
-
-]]></template>
+</div>]]></template>
     </sp_header_footer>
 </record_update>

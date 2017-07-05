@@ -17,16 +17,16 @@
   position: fixed; /* Stay in place */&#13;
   z-index: 1; /* Stay on top */&#13;
   top: 0;&#13;
-  background-color: #111; /* Black*/&#13;
-  overflow-x: hidden; /* Disable horizontal scroll */&#13;
-  transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */&#13;
+  background-color: #111;&#13;
+  overflow-x: hidden; &#13;
+  transition: 0.2s; &#13;
 }&#13;
 &#13;
 /* The navigation menu links */&#13;
 .sidenav a {&#13;
   text-decoration: none;&#13;
   color: #818181;&#13;
-  transition: 0.3s&#13;
+  transition: 0.1s&#13;
 }&#13;
 &#13;
 /* Position and style the close button (top right corner) */&#13;
@@ -54,7 +54,7 @@
   background-color: #2e353d;&#13;
   top: 0px;&#13;
   height: 100%;&#13;
-  color: #e1ffff;&#13;
+  color: #FFF;&#13;
 }&#13;
 .nav-side-menu .brand {&#13;
   background-color: #23282e;&#13;
@@ -134,7 +134,7 @@
 &#13;
 .nav-side-menu li a {&#13;
   text-decoration: none;&#13;
-  color: #e1ffff;&#13;
+  color: #fff;&#13;
 }&#13;
 .nav-side-menu li a i {&#13;
   padding-left: 10px;&#13;
@@ -144,11 +144,11 @@
 .nav-side-menu li:hover {&#13;
   border-left: 3px solid;&#13;
   background-color: #4f5b69;&#13;
-  -webkit-transition: all 1s ease;&#13;
+  -webkit-transition: all .1s ease;&#13;
   -moz-transition: all 1s ease;&#13;
   -o-transition: all 1s ease;&#13;
   -ms-transition: all 1s ease;&#13;
-  transition: all 1s ease;&#13;
+  transition: all .1s ease;&#13;
 }&#13;
 .close-menu {&#13;
     float: right;&#13;
@@ -198,7 +198,7 @@ body {&#13;
         <sys_created_on>2017-06-16 19:43:33</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>10b3eb4f4f97f200f58ab4e18110c72b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>cross-portal-header-side-menu.css</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
@@ -206,6 +206,6 @@ body {&#13;
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_css_10b3eb4f4f97f200f58ab4e18110c72b</sys_update_name>
         <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-22 05:29:24</sys_updated_on>
+        <sys_updated_on>2017-06-29 23:06:08</sys_updated_on>
     </sp_css>
 </record_update>

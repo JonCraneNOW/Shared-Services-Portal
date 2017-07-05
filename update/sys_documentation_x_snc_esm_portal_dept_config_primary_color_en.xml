@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="primary_color" label="Primary color" language="en" table="x_snc_esm_portal_dept_config">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>primary_color</element>
+            <help/>
+            <hint/>
+            <label>Primary color</label>
+            <language>en</language>
+            <name>x_snc_esm_portal_dept_config</name>
+            <plural>Primary colors</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>jc</sys_created_by>
+            <sys_created_on>2017-06-27 22:18:56</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_id>47c03436db6f7200e6a3bb01ef96199c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Primary color</sys_name>
+            <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_esm_portal_dept_config_primary_color_en</sys_update_name>
+            <sys_updated_by>jc</sys_updated_by>
+            <sys_updated_on>2017-06-27 22:18:56</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

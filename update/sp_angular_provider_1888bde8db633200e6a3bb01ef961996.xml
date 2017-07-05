@@ -59,7 +59,7 @@
         
             + '<li class="col-sm-3">'
               + '<ul>'
-                + '<li class="dropdown-header">${Featured Catalog Items}</li>'
+                + '<li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Catalog Items}</li>'
                 + '<p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">'
                   + '${There are currently no featured catalog items.}'
                 + '</p>'
@@ -71,7 +71,7 @@
                 + '</li>'    
 
                 + '<li class="divider"></li>'
-                + '<li class="dropdown-header">${Featured Catalog Categories}</li>'
+                + '<li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Catalog Categories}</li>'
                 + '<p class="mega-menu-p" ng-if="domain.sc_categories.length == 0">'
                   + '${There are currently no featured catalog categories.}'
                 + '</p>'
@@ -81,7 +81,7 @@
                     + '<img ng-if="sc_cat.homepage_image" ng-src="{{::sc_cat.homepage_image}}" style="height:30px; width:30px"/>'
                     + '<i class="fa fa-shopping-cart" ng-if="!sc_cat.homepage_image"></i>{{::sc_cat.title}}</a>'
                 + '</li>'
-                + '<li><button class="btn mega-menu-btn" type="button" ng-click="c.scRedirect(domain[&quot;portal.url_suffix&quot;], domain.sc_catalog_page)"><i class="fa fa-shopping-cart"></i> ${View all {{::domain.abbreviated_name}} Items}</button></li>'
+                + '<li><button class="btn mega-menu-btn" style="background-color: {{domain.primary_color}}" type="button" ng-click="c.scRedirect(domain[&quot;portal.url_suffix&quot;], domain.sc_catalog_page)"><i class="fa fa-shopping-cart"></i> ${View all {{::domain.abbreviated_name}} Items}</button></li>'
                 + '<!-- End Catalog Categories -->'
               + '</ul>'
             + '</li>'
@@ -89,7 +89,7 @@
         
             + '<li class="col-sm-3">'
               + '<ul>'
-                + '<li class="dropdown-header">${Featured Knowledge Articles}</li>'
+                + '<li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Knowledge Articles}</li>'
                 + '<p class="mega-menu-p" ng-if="domain.kb_articles.length == 0">'
                   + '${There are currently no featured knowledge articles.}'
                 + '</p>'
@@ -100,7 +100,7 @@
                 + '</li> '
         
                 + '<li class="divider"></li>'
-                + '<li class="dropdown-header">${Featured Knowledge Categories}</li>'
+                + '<li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Knowledge Categories}</li>'
                 + '<p class="mega-menu-p" ng-if="domain.kb_categories.length == 0">'
                   + '${There are currently no featured knowledge categories.}'
                 + '</p>'
@@ -109,13 +109,13 @@
                   + '<a ng-click="openMenuItem(domain[&quot;portal.url_suffix&quot;], &quot;kb_category&quot;, kb_cat.sys_id)">'
                     + '<i class="fa fa-book"></i>{{kb_cat.label}}</a>'
                 + '</li>'
-                + '<li><button class="btn mega-menu-btn" type="button" ng-click="kbRedirect(domain[&quot;portal.url_suffix&quot;], domain.kb_knowledge_page)"><i class="fa fa-book"></i> ${View all {{domain.abbreviated_name}} Articles}</button></li>'
+                + '<li><button class="btn mega-menu-btn" style="background-color: {{domain.primary_color}}" type="button" ng-click="kbRedirect(domain[&quot;portal.url_suffix&quot;], domain.kb_knowledge_page)"><i class="fa fa-book"></i> ${View all {{domain.abbreviated_name}} Articles}</button></li>'
               + '</ul>'
             + '</li>'
         
             + '<li class="col-sm-3">'
               + '<ul>'
-                + '<li class="dropdown-header">${My Records} <span class="badge badge-record-counter rounded">{{domain.my_records.record_count}}</span></li>'
+                + '<li class="dropdown-header" style="color: {{domain.primary_color}}">${My Records} <span class="badge badge-record-counter rounded">{{domain.my_records.record_count}}</span></li>'
                 + '<p class="mega-menu-p" ng-if="domain.my_records.length == 0">'
                   + '${You have no open records.}'
                 + '</p>'
@@ -125,7 +125,7 @@
                     + '<i class="fa fa-list"></i>{{record.number}} <span ng-if="record.short_desc">- {{record.short_desc | limitTo: 40}} {{record.short_desc.length > 40 ? &quot;&hellip;&quot; : &quot&quot}}</span></a>'
                 + '</li>'
 
-                + '<li><button class="btn mega-menu-btn" type="button" ng-click="openRecordList(domain[&quot;portal.url_suffix&quot;], domain.record_overview)"><i class="fa fa-shopping-cart"></i> ${View all my {{domain.abbreviated_name}} records}</button></li>    '              
+                + '<li><button class="btn mega-menu-btn" style="background-color: {{domain.primary_color}}" type="button" ng-click="openRecordList(domain[&quot;portal.url_suffix&quot;], domain.record_overview)"><i class="fa fa-shopping-cart"></i> ${View all my {{domain.abbreviated_name}} records}</button></li>    '              
               + '</ul>'
             + '</li> '       
         
@@ -195,7 +195,7 @@
         <sys_created_on>2017-06-21 03:45:55</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>1888bde8db633200e6a3bb01ef961996</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>crossPortalHeaderMegaMenu</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
@@ -203,7 +203,7 @@
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_angular_provider_1888bde8db633200e6a3bb01ef961996</sys_update_name>
         <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-27 18:34:20</sys_updated_on>
+        <sys_updated_on>2017-06-27 22:26:38</sys_updated_on>
         <type>directive</type>
     </sp_angular_provider>
 </record_update>

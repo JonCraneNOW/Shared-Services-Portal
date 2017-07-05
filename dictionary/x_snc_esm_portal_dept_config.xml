@@ -12,6 +12,7 @@
         <element label="Order" max_length="40" name="order" type="integer"/>
         <element label="Portal" max_length="32" name="portal" reference="sp_portal" type="reference"/>
         <element label="Record Detail Page" max_length="32" name="portal_page" reference="sp_page" type="reference"/>
+        <element label="Primary color" max_length="40" name="primary_color" type="color"/>
         <element label="Record Overview Page" max_length="32" name="record_overview" reference="sp_page" type="reference"/>
         <element label="Table" max_length="80" name="table" type="table_name"/>
         <index name="index">

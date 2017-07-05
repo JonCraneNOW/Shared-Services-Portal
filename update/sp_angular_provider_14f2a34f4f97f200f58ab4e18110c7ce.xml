@@ -5,9 +5,11 @@
         <script><![CDATA[function() {
 	return {
 		restrict: 'E',
+		
 		scope: { data: '=',
 						 portal: '='
 					 },
+		
 		template: '<span class="sidenav-button"><i ng-click="toggleNav()" class="fa fa-align-left sidenav-button hidden-xs" aria-hidden="true"></i></span>'
 		+ '<div id="cross-portal-side-nav" class="sidenav">'
 		
@@ -31,7 +33,7 @@
 											+ '</li>'
 		
 											// Featured Catalog Items
-											+ '<li><a class="nav-content-header" href="#">${Featured Catalog Items}</a>'
+											+ '<li class="dropdown-header"> <a class="nav-content-header" href="#">${Featured Catalog Items}</a>'
 											+ '<p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">'
 											+ '${There are currently no featured catalog items.}'
 											+ '</p>'
@@ -115,7 +117,7 @@
 				}
 				
 				navClosed = !navClosed;
-			}
+			};
 
 		},
 
@@ -131,7 +133,7 @@
         <sys_created_on>2017-06-16 19:40:42</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>14f2a34f4f97f200f58ab4e18110c7ce</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>crossPortalHeaderSideMenu</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
@@ -139,7 +141,7 @@
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_angular_provider_14f2a34f4f97f200f58ab4e18110c7ce</sys_update_name>
         <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-27 19:30:23</sys_updated_on>
+        <sys_updated_on>2017-06-27 23:09:29</sys_updated_on>
         <type>directive</type>
     </sp_angular_provider>
 </record_update>

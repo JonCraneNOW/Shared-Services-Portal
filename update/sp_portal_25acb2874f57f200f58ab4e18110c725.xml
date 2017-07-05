@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sp_portal">
     <sp_portal action="INSERT_OR_UPDATE">
-        <css_variables>$brand-primary: #d1232b;&#13;
-$body-bg: #fff;&#13;
-$state-success-text: #5cb85c;&#13;
-$sp-homepage-bg: #fff;&#13;
-$sp-navbar-divider-color: #3d4868;&#13;
-$text-color: #717171;&#13;
-$sp-logo-margin-y: .5rem;&#13;
-$navbar-inverse-link-hover-color: #3d4868;&#13;
-$panel-bg: #fff;&#13;
-$brand-success: #5cb85c;&#13;
-$navbar-inverse-bg: #000;&#13;
-$brand-warning: #f0ad4e;&#13;
-$brand-danger: #d9534f;&#13;
-$sp-tagline-color: #717171;&#13;
-$navbar-inverse-link-color: #FFF;&#13;
-$brand-info: #5bc0de;&#13;
-$link-color: #428bca;&#13;
-$sp-logo-margin-x: 1rem;&#13;
-$btn-default-bg: #fff;&#13;
-$text-muted: #979797;&#13;
+        <css_variables>$brand-primary: #d1232b;
+$body-bg: #fff;
+$state-success-text: #5cb85c;
+$sp-homepage-bg: #fff;
+$sp-navbar-divider-color: #3d4868;
+$text-color: #717171;
+$sp-logo-margin-y: .5rem;
+$navbar-inverse-link-hover-color: #d1232b;
+$panel-bg: #fff;
+$brand-success: #5cb85c;
+$navbar-inverse-bg: #000;
+$brand-warning: #f0ad4e;
+$brand-danger: #d9534f;
+$sp-tagline-color: #717171;
+$navbar-inverse-link-color: #ffffff;
+$brand-info: #5bc0de;
+$link-color: #428bca;
+$sp-logo-margin-x: 1rem;
+$btn-default-bg: #fff;
+$text-muted: #979797;
 </css_variables>
         <default>false</default>
         <homepage display_value="support_home">80ccb2874f57f200f58ab4e18110c7ef</homepage>
@@ -39,17 +39,17 @@ $text-muted: #979797;&#13;
         <sys_class_name>sp_portal</sys_class_name>
         <sys_created_by>frank.schuster</sys_created_by>
         <sys_created_on>2017-06-16 16:53:07</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>25acb2874f57f200f58ab4e18110c725</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Support Portal</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_portal_25acb2874f57f200f58ab4e18110c725</sys_update_name>
-        <sys_updated_by>jon.crane</sys_updated_by>
-        <sys_updated_on>2017-06-16 19:49:54</sys_updated_on>
+        <sys_updated_by>jc</sys_updated_by>
+        <sys_updated_on>2017-06-29 17:03:59</sys_updated_on>
         <theme display_value="Shared Services Theme">84624b4b4f57f200f58ab4e18110c79a</theme>
         <title>Support Portal</title>
         <url_suffix>support</url_suffix>

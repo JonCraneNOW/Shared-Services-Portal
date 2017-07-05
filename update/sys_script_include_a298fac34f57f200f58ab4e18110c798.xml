@@ -25,6 +25,7 @@
 					description : Domain.description + '',
 					glyph : Domain.glyph + '',
 					glyph_background_color : Domain.glyph_background_color + '',
+					primary_color : Domain.primary_color + '',
 					portal_page : Domain.portal_page.getDisplayValue(),
 					record_overview : Domain.record_overview.getDisplayValue(),
 					sc_catalog_page : Domain.portal.sc_catalog_page.id.toString() || "sc_home",
@@ -34,16 +35,15 @@
 					sc_categories : getCatalogCategories(Domain.portal.sc_catalog),
 					kb_articles : getKBArticles(Domain.getUniqueValue()),
 					kb_categories : getKBCategories(Domain.portal.kb_knowledge_base),
+					popular_items : getPopularItemsForCatalog(Domain.portal.sc_catalog),
+					portal_catalog : Domain.portal.sc_catalog.sys_id.toString(),
 					my_records : getRecords(Domain.getValue("table"), Domain.getValue("conditions"))
 
 				};
 
 				domains.push(domain);
-
 			}
 		}
-
-
 
 		return domains;
 	}
@@ -173,6 +173,66 @@
 		return records;
 	}
 
+	function getPopularItemsForCatalog(catalogId) {
+
+		var includeRecordProducers = true; //set to false, if you do not want to include producers in the popular items
+		var items = [];
+		var itemLimit = 5; //get only the 5 most popular items, due to the lack of space for more
+
+		var count = new GlideAggregate('sc_req_item');
+		count.addAggregate('COUNT','cat_item');
+		count.groupBy('cat_item');
+		count.addQuery('cat_item.sys_class_name', 'NOT IN', 'sc_cat_item_guide,sc_cat_item_wizard,sc_cat_item_content');
+		count.addQuery('cat_item.sc_catalogs', 'IN', catalogId);
+		count.orderByAggregate('COUNT', 'cat_item');
+		count.query();
+		while (count.next() && items.length < itemLimit) {			
+			//if (!spApi.canReadRecord("sc_cat_item", count.cat_item.sys_id.getDisplayValue()))
+			//continue; // user does not have permission to see this item
+
+			var item = {};
+			item.count = count.getAggregate('COUNT', 'cat_item');
+			item.name = count.cat_item.name.getDisplayValue();
+			item.short_description = count.cat_item.short_description.getDisplayValue();
+			item.picture = count.cat_item.picture.getDisplayValue();
+			item.price = count.cat_item.price.getDisplayValue();
+			item.sys_id = count.cat_item.sys_id.getDisplayValue();
+			items.push(item);
+		}
+
+
+		if (includeRecordProducers == 'true' || includeRecordProducers == true) {
+			var producers = 0;
+			count = new GlideAggregate('sp_log');
+			count.addAggregate('COUNT', 'id');
+			count.groupBy('id');
+			count.addQuery('type', 'Catalog Request');
+			count.addQuery('table', 'sc_cat_item_producer');				
+			count.orderByAggregate('COUNT', 'id');
+			count.query();
+			while (count.next() && producers < itemLimit) {
+				//if (!spApi.canReadRecord("sc_cat_item", count.getValue('id')))
+				//	continue; // user does not have permission to see this item
+
+				var producer = {};
+				producer.count = count.getAggregate('COUNT', 'id');
+				producer.name = count.id.name.getDisplayValue();
+				producer.short_description = count.id.short_description.getDisplayValue();
+				producer.picture = count.id.picture.getDisplayValue();
+				producer.price = count.id.price.getDisplayValue();
+				producer.sys_id = count.id.sys_id.getDisplayValue();
+				//get catalog record from document_id field
+				var grProducer = new GlideRecord("sc_cat_item_producer");
+				grProducer.get("sys_id", producer.sys_id);
+				producer.catalogs = grProducer.getValue("sc_catalogs");
+				items.push(producer);
+				producers++;
+			}
+		}
+
+		return items;
+	}
+
 	function getAddOnWidgetConfig(portal) {
 		var gr = new GlideRecord('x_snc_esm_portal_add_on_widget_configuration');
 		if (!gr.get('service_portal', portal.sys_id))
@@ -185,9 +245,11 @@
 			};
 	}
 
+
 	return { 
 		'getContent': getContent,
-		'getAddOnWidgetConfig' : getAddOnWidgetConfig
+		'getAddOnWidgetConfig' : getAddOnWidgetConfig,
+		'getPopularItemsForCatalog': getPopularItemsForCatalog
 	};
 })(new GlideRecord('x_snc_esm_portal_dept_config'));]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
@@ -195,14 +257,14 @@
         <sys_created_on>2017-06-16 16:35:39</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a298fac34f57f200f58ab4e18110c798</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>CrossPortalHeader</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sys_script_include_a298fac34f57f200f58ab4e18110c798</sys_update_name>
-        <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-22 03:26:39</sys_updated_on>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-28 20:02:56</sys_updated_on>
     </sys_script_include>
 </record_update>

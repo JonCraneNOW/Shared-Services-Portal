@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>megamenu</id>
+        <sp_widget display_value="Cross Portal Header">61dc36874f57f200f58ab4e18110c70a</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>jc</sys_created_by>
+        <sys_created_on>2017-06-27 22:37:29</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>dcd378b6db6f7200e6a3bb01ef9619ab</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>megamenu</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_ng_template_dcd378b6db6f7200e6a3bb01ef9619ab</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-06-28 19:59:08</sys_updated_on>
+        <template><![CDATA[<ul class="nav navbar-nav">
+  <li>
+    <a ng-href="/support" class="dropdown-toggle ssp-domain-name" data-toggle="dropdown">
+      ${Support Portal}
+    </a>
+  </li>
+  <li class="dropdown mega-dropdown" ng-repeat="domain in c.data.domains track by $index" ng-init="$last && loadHover()">
+    <a ng-href="/{{domain['portal.url_suffix']}}" class="dropdown-toggle ssp-domain-name" data-toggle="dropdown">
+      {{::domain.name }}<span class="caret hidden-xs"></span>
+    </a>
+    <ul class="dropdown-menu mega-dropdown-menu hidden-xs">
+      <li class="col-sm-3 hidden-xs">
+        <ul>
+          <li class="dropdown-header" style="color: {{domain.primary_color}}">${Popular Items}</li>
+          <p class="mega-menu-p" ng-if="domain.popular_items.length == 0">
+            ${There are currently no featured catalog items.}
+          </p>
+
+          <li ng-repeat="popular_item in domain.popular_items">
+            <a ng-click="openMenuItem(domain['portal.url_suffix'], 'sc_cat_item', popular_item.sys_id)" ng-if="popular_item.catalogs == domain.catalog">
+              <img ng-if="popular_item.picture" ng-src="{{::popular_item.picture}}" style="height:30px; width: auto"/>
+              <i ng-if="!popular_item.picture" class="fa fa-shopping-cart"></i> {{::popular_item.name}}</a>
+          </li> 
+        </ul>
+      </li>
+
+      <li class="col-sm-3">
+        <ul>
+          <li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Catalog Items}</li>
+          <p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">
+            ${There are currently no featured catalog items.}
+          </p>
+
+          <li ng-repeat="item in domain.catalog_items">
+            <a ng-click="openMenuItem(domain['portal.url_suffix'], 'sc_cat_item', item['catalog_item.sys_id'])">
+              <img ng-if="item['catalog_item.picture']" ng-src="{{::item['catalog_item.picture']}}" style="height:30px; width: auto"/>
+              <i ng-if="!item['catalog_item.picture']" class="fa fa-shopping-cart"></i> {{::item["catalog_item.name"]}}</a>
+          </li>    
+
+          <li class="divider"></li>
+          <li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Catalog Categories}</li>
+          <p class="mega-menu-p" ng-if="domain.sc_categories.length == 0">
+            ${There are currently no featured catalog categories.}
+          </p>
+          <!-- Catalog Categories -->
+          <li ng-repeat="sc_cat in domain.sc_categories">
+            <a ng-click="openMenuItem(domain['portal.url_suffix'], 'sc_category', sc_cat.sys_id)">
+              <img ng-if="sc_cat.homepage_image" ng-src="{{::sc_cat.homepage_image}}" style="height:30px; width:30px"/>
+              <i class="fa fa-shopping-cart" ng-if="!sc_cat.homepage_image"></i> {{::sc_cat.title}}</a>
+          </li>
+          <li><button class="btn mega-menu-btn" style="background-color: {{domain.primary_color}}" type="button" ng-click="c.scRedirect(domain['portal.url_suffix'], domain.sc_catalog_page)"><i class="fa fa-shopping-cart"></i> ${View all {{::domain.abbreviated_name}} Items}</button></li>
+          <!-- End Catalog Categories -->
+        </ul>
+      </li>
+
+      <li class="col-sm-3">
+        <ul>
+          <li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Knowledge Articles}</li>
+          <p class="mega-menu-p" ng-if="domain.kb_articles.length == 0">
+            ${There are currently no featured knowledge articles.}
+          </p>
+          <li ng-repeat="article in domain.kb_articles">
+            <a ng-click="openMenuItem(domain['portal.url_suffix'], 'kb_article', article['article.sys_id'])">
+              <img ng-if="article['article.image']" ng-src="{{article['article.image']}}" style="height:30px; width: auto"/>
+              <i ng-if="!article['article.image']" class="fa fa-book"></i> {{article["article.short_description"]}}</a>
+          </li> 
+
+          <li class="divider"></li>
+          <li class="dropdown-header" style="color: {{domain.primary_color}}">${Featured Knowledge Categories}</li>
+          <p class="mega-menu-p" ng-if="domain.kb_categories.length == 0">
+            ${There are currently no featured knowledge categories.}
+          </p>
+          <!-- KB Categories -->
+          <li ng-repeat="kb_cat in domain.kb_categories">
+            <a ng-click="openMenuItem(domain['portal.url_suffix'], 'kb_category', kb_cat.sys_id)">
+              <i class="fa fa-book"></i> {{kb_cat.label}}</a>
+          </li>
+          <li><button class="btn mega-menu-btn" style="background-color: {{domain.primary_color}}" type="button" ng-click="kbRedirect(domain['portal.url_suffix'], domain.kb_knowledge_page)"><i class="fa fa-book"></i> ${View all {{domain.abbreviated_name}} Articles}</button></li>
+        </ul>
+      </li>
+
+      <li class="col-sm-3">
+        <ul>
+          <li class="dropdown-header" style="color: {{domain.primary_color}}">${My Records} <span class="badge badge-record-counter rounded">{{domain.my_records.record_count}}</span></li>
+          <p class="mega-menu-p" ng-if="domain.my_records.length == 0">
+            ${You have no open records.}
+          </p>
+
+          <li ng-repeat="record in domain.my_records.recArr">
+            <a ng-click="openRecord(domain['portal.url_suffix'], domain.portal_page, record.sys_class_name, record.sys_id)">
+              <i class="fa fa-list"></i> {{record.number}} <span ng-if="record.short_desc">- {{record.short_desc | limitTo: 40}} {{record.short_desc.length > 40 ? '&hellip;' : ''}}</span></a>
+          </li>
+
+          <li><button class="btn mega-menu-btn" style="background-color: {{domain.primary_color}}" type="button" ng-click="openRecordList(domain['portal.url_suffix'], domain.record_overview)"><i class="fa fa-shopping-cart"></i> ${View all my {{domain.abbreviated_name}} records}</button></li>                  
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></template>
+    </sp_ng_template>
+</record_update>
