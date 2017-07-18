@@ -1,93 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update>
-    <sys_ui_list parent="" relationship="" sys_domain="global" table="live_favorite" version="2" view="">
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_snc_esm_portal_quick_links" version="2" view="">
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
-            <element>document</element>
-            <list_id display_value="live_favorite" element="NULL" name="live_favorite" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">55fdf0c7db27b200e6a3bb01ef9619e1</list_id>
+            <element>link_name</element>
+            <list_id display_value="x_snc_esm_portal_quick_links" element="NULL" name="x_snc_esm_portal_quick_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1fcccb80db80cb00e6a3bb01ef961957</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
             <sum>false</sum>
             <sys_created_by>frank.schuster</sys_created_by>
-            <sys_created_on>2017-06-28 17:54:55</sys_created_on>
-            <sys_id>d9fdf0c7db27b200e6a3bb01ef9619e1</sys_id>
+            <sys_created_on>2017-07-14 17:08:38</sys_created_on>
+            <sys_id>93cccb80db80cb00e6a3bb01ef961958</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>frank.schuster</sys_updated_by>
-            <sys_updated_on>2017-06-28 17:54:55</sys_updated_on>
+            <sys_updated_on>2017-07-14 17:08:38</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
-            <element>sys_domain</element>
-            <list_id display_value="live_favorite" element="NULL" name="live_favorite" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">55fdf0c7db27b200e6a3bb01ef9619e1</list_id>
+            <element>type</element>
+            <list_id display_value="x_snc_esm_portal_quick_links" element="NULL" name="x_snc_esm_portal_quick_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1fcccb80db80cb00e6a3bb01ef961957</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
             <sum>false</sum>
             <sys_created_by>frank.schuster</sys_created_by>
-            <sys_created_on>2017-06-28 17:54:55</sys_created_on>
-            <sys_id>5dfdf0c7db27b200e6a3bb01ef9619e1</sys_id>
+            <sys_created_on>2017-07-14 17:08:38</sys_created_on>
+            <sys_id>17cccb80db80cb00e6a3bb01ef961958</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>frank.schuster</sys_updated_by>
-            <sys_updated_on>2017-06-28 17:54:55</sys_updated_on>
+            <sys_updated_on>2017-07-14 17:08:38</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
-            <element>table</element>
-            <list_id display_value="live_favorite" element="NULL" name="live_favorite" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">55fdf0c7db27b200e6a3bb01ef9619e1</list_id>
+            <element>department</element>
+            <list_id display_value="x_snc_esm_portal_quick_links" element="NULL" name="x_snc_esm_portal_quick_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1fcccb80db80cb00e6a3bb01ef961957</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
             <sum>false</sum>
             <sys_created_by>frank.schuster</sys_created_by>
-            <sys_created_on>2017-06-28 17:54:55</sys_created_on>
-            <sys_id>ddfdf0c7db27b200e6a3bb01ef9619e1</sys_id>
+            <sys_created_on>2017-07-14 17:08:38</sys_created_on>
+            <sys_id>97cccb80db80cb00e6a3bb01ef961958</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>frank.schuster</sys_updated_by>
-            <sys_updated_on>2017-06-28 17:54:55</sys_updated_on>
+            <sys_updated_on>2017-07-14 17:08:38</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
-            <element>user</element>
-            <list_id display_value="live_favorite" element="NULL" name="live_favorite" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">55fdf0c7db27b200e6a3bb01ef9619e1</list_id>
+            <element>url</element>
+            <list_id display_value="x_snc_esm_portal_quick_links" element="NULL" name="x_snc_esm_portal_quick_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1fcccb80db80cb00e6a3bb01ef961957</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
             <sum>false</sum>
             <sys_created_by>frank.schuster</sys_created_by>
-            <sys_created_on>2017-06-28 17:54:55</sys_created_on>
-            <sys_id>51fdf0c7db27b200e6a3bb01ef9619e2</sys_id>
+            <sys_created_on>2017-07-14 17:08:38</sys_created_on>
+            <sys_id>1bcccb80db80cb00e6a3bb01ef961958</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>frank.schuster</sys_updated_by>
-            <sys_updated_on>2017-06-28 17:54:55</sys_updated_on>
+            <sys_updated_on>2017-07-14 17:08:38</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element/>
             <max_value>false</max_value>
             <min_value>false</min_value>
-            <name>live_favorite</name>
+            <name>x_snc_esm_portal_quick_links</name>
             <parent/>
             <position/>
             <relationship/>
             <sum>false</sum>
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>frank.schuster</sys_created_by>
-            <sys_created_on>2017-06-28 17:55:01</sys_created_on>
+            <sys_created_on>2017-07-14 17:08:38</sys_created_on>
             <sys_customer_update>true</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_id>b2fd34c7db27b200e6a3bb01ef961942</sys_id>
+            <sys_id>1fcccb80db80cb00e6a3bb01ef961957</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name>live_favorite</sys_name>
+            <sys_name>x_snc_esm_portal_quick_links</sys_name>
             <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
-            <sys_update_name>sys_ui_list_live_favorite_null</sys_update_name>
+            <sys_update_name>sys_ui_list_x_snc_esm_portal_quick_links_null</sys_update_name>
             <sys_updated_by>frank.schuster</sys_updated_by>
-            <sys_updated_on>2017-06-28 17:55:01</sys_updated_on>
-            <sys_user display_value="Frank Schuster">7a9ee164db633200e6a3bb01ef9619b4</sys_user>
+            <sys_updated_on>2017-07-14 17:08:38</sys_updated_on>
+            <sys_user/>
             <view display_value="Default view" name="NULL">Default view</view>
             <view_name/>
         </sys_ui_list>

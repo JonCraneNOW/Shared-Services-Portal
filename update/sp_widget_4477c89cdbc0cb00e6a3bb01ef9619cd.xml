@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function ($scope) {
+	var c = this;
+	c.profile = c.data.profile;
+	 $scope.call = function(telnumber) {
+               
+
+                if (telnumber) {
+                    window.location.href = "tel://" + telnumber;
+                } else {
+                    window.location.href = "tel://" + "1234567890";
+                }
+
+            };
+
+             $scope.getinitials = function(user) {
+
+                var initials = "";
+                if (user && !user.photo) {
+                    if (!user.first_name || !user.last_name) {
+                        initials = angular.uppercase(user.name.charAt(0));
+                    } else {
+                        initials = angular.uppercase(user.first_name.charAt(0));
+                        initials = initials + angular.uppercase(user.last_name.charAt(0));
+                    }
+
+                }
+                return initials;
+                // console.log(initials);
+            };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>div.rect {
+    width: 100%;
+    margin-bottom: 10px;
+    background: #f6f6f6;
+    padding: 12px 6px;
+}
+
+ul.info-table {
+    padding: 0px;
+    margin: 0px;
+    margin-left: 12px;
+}
+
+ul.info-table i {
+    margin-right: 12px;
+    font-size: 2rem;
+    color: #525252;
+    padding: 0px;
+
+    /*font-weight:bold;*/
+}
+
+ul.info-table li {
+    list-style: none;
+    padding: 6px;
+    line-height: 2rem;
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+}
+
+ul.info-table .right-side {
+    padding: 0;
+    white-space: normal;
+    word-break: break-word;
+    word-wrap: break-word;
+}
+
+h2 {
+    font-weight: 300;
+    color: #3b3b3b;
+}
+
+h3.profile-heading {
+    font-weight: 300;
+    color: #3b3b3b;
+    margin-left: 12px;
+}
+
+div.super-avatar span.navbar-avatar {
+    float: none;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+div.super-avatar span.navbar-avatar .avatar-container {
+    height: 140px;
+    width: 140px;
+    margin: 20px 0 30px;
+    margin-top: -70px;
+}
+
+.super-avatar .avatar-container .avatar.soloAvatar .sub-avatar {
+    font-size: 40px;
+    font-family: sans-serif;
+    font-weight: 100;
+    padding-top: 25px;
+    text-align: center;
+    background-color: #909090;
+}
+
+.hr-user-profile .avatar-container .avatar.soloAvatar .sub-avatar span {
+	position: absolute; 
+    top: 40%; 
+    left: 33%; 
+}
+
+.user-info {
+    text-align: center;
+    margin-top: -25px;
+    margin-bottom: 10px;
+}
+
+.prof {
+  padding-left:0;
+}
+
+.people-card-media {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    //border-bottom: 1px solid #dcdcdc;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    float: left;
+    margin: 0px;
+    .flex-it-align-top {
+        display: flex;
+        justify-content: space-between;
+    }
+    .webicon-down {
+        fill: transparent;
+        stroke: $brand-primary;
+        width: 22px;
+        height: 22px;
+        vertical-align: bottom;
+    }
+    .media-body {
+        width: 60%;
+    }
+    .media-left {
+        //  width: 60px;
+        .list__photo {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .initials-badge {
+            min-width: 36px;
+            float: left;
+            margin-top: 0px;
+            border-radius: 50%;
+            line-height: 1;
+            font-size: 14px;
+            margin-left: 0px;
+            padding: 10px 10px;
+            font-weight: 300;
+            background: #AEB2B3;
+        }
+        .not-available.presence:after {
+            background-color: #FA5B5A;
+        }
+        .available.presence:after {
+            background-color: #7CE684;
+        }
+        .presence {
+            position: relative;
+        }
+        .presence:after {
+            width: 10px;
+            height: 10px;
+            top: 26px;
+            left: 25px;
+            position: absolute;
+            content: "";
+            border-radius: 50%;
+        }
+    }
+    .media-right {
+        width: 40%;
+        .fa-color {
+            color: $brand-primary;
+            margin-right: 5px;
+        }
+        .add-unnssigned {
+            font-size: 30px;
+            color: $brand-primary;
+        }
+    }
+    .people_name_title {
+        .title {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 0px;
+            color: #565656;
+            font-weight: 300;
+        }
+        .list__subtitle {
+            font-size: 12px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            margin-bottom: 0px;
+            color: #565656;
+        }
+        .list__sub_subtitle {
+            font-size: 14px;
+            margin-bottom: 0px;
+            color: #565656;
+        }
+    }
+    .list__body {
+        //width: 200px;
+    }
+    .contact-div {
+        clear: both;
+    }
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>my_profile</id>
+        <internal>false</internal>
+        <link/>
+        <name>My Profile</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    var userId = gs.getUserID();
+    var gr = new GlideRecord('sn_hr_core_profile');
+    gr.addQuery('user', userId);
+    gr.query();
+    if (!gr.next()) {
+        gr.setValue('user', userId);
+        gr.insert();
+    }
+
+    data.profileURL = '?id=hri_user_profile&sys_id=' + userId;
+    //var presenceHelper = new global().presenceHelperAjax();
+
+    var profile = {};
+    profile.company = gr.user.company.name + '';
+    profile.department = gr.user.department.name + '';
+    profile.personal_email = gr.user.email + '';
+    profile.employment_start_date = gr.employment_start_date + "";
+    profile.work_email = gr.user.email + "";
+    profile.work_phone = gr.user.mobile_phone.getDisplayValue();
+    profile.work_mobile = gr.user.phone.getDisplayValue();
+    profile.position = gr.position.position + "";
+    profile.location = gr.user.location.name + "";
+    profile.company = gr.user.company.name + "";
+    profile.employment_start_date = gr.employment_start_date + "";
+
+    profile.manager = {};
+    profile.manager.name = gr.user.manager.getDisplayValue();
+    profile.manager.first_name = gr.user.manager.first_name.toString();
+    profile.manager.last_name = gr.user.manager.last_name.toString();
+    profile.manager.sys_id = gr.user.manager.sys_id.toString();
+    profile.manager.photo = gr.user.manager.photo.getDisplayValue();
+    //profile.manager.presence = presenceHelper.isAvailable(profile.manager.sys_id);
+
+    var theDay = new GlideDateTime(gr.employment_start_date);
+    var now = new GlideDateTime();
+    var offset = now.getTZOffset();
+    var diff = (theDay.getNumericValue() - now.getNumericValue() - offset) / 86400000;
+
+    //profile.days_to_first_day = 10;
+    profile.days_to_first_day = Math.ceil(diff);
+
+    data.profile = profile;
+   // console.log(JSON.stringify(data.profile));
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-07-14 21:24:49</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>4477c89cdbc0cb00e6a3bb01ef9619cd</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>My Profile</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_widget_4477c89cdbc0cb00e6a3bb01ef9619cd</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-07-14 21:28:47</sys_updated_on>
+        <template><![CDATA[<div class="rect hr-user-profile" rect="rect">
+	<a href="{{data.profileURL}}" id="sn_hr_core_profile">
+		<div class="super-avatar">
+			<span class="navbar-avatar">
+				<sn-avatar class="avatar-small-medium" primary="user.sys_id" show-presence="false">
+				</sn-avatar>
+			</span>
+		</div>
+	</a>
+	<div class="user-info">
+		<h2>{{user.name}}</h2>
+		<span>{{c.profile.position}} {{c.profile.department}}</span>
+    <br/>
+		<span ng-if="c.profile.location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{c.profile.location}}</span>
+	</div>
+
+	<div ng-if="c.profile.days_to_first_day >= 0" class="first-day-info text-center text-{{options.color}}">
+		<div>${My first day is}</div>
+		<div ng-switch="c.profile.days_to_first_day">
+			<div ng-switch-when="1">
+				<div>${Tomorrow}</div>
+			</div>
+			<div ng-switch-when="0">
+				<div>${Today}</div>
+			</div>
+			<div ng-switch-default>
+				<div>{{c.profile.employment_start_date}}</div>
+				<div>{{c.profile.days_to_first_day}} ${days away}</div>
+			</div>
+		</div>
+	</div>
+  	<h3 ng-if="c.profile.manager.name" class="profile-heading">${My Manager}</h3>
+	<div ng-if="c.profile.manager.name" class="media  people-card-media" ng-class="{'full-width': type  == 'assigned'}">
+        <div class="media-left ">
+            <div class="person-photo presence" ng-class="{'not-available': !c.profile.manager.presence, 'available': c.profile.manager.presence}">
+                <img ng-if="c.profile.manager.photo &amp;&amp; !c.profile.manager.anonymous" class="media-object list__photo img-circle" ng-src="{{c.profile.manager.photo}}" />
+                <div ng-if="!c.profile.manager.photo " class="badge initials-badge" data-original-title="" title="">
+                    <span class="" ng-bind="getinitials(c.profile.manager)"></span>
+                </div>
+               
+            </div>
+        </div>
+        <div class="media-body list__body">
+            <div class="people_name_title">
+                <h4 class="media-heading title">{{c.profile.manager.name}}</h4>
+
+               
+            </div>
+        </div>
+        <div class="media-right">
+            <i class="fa-color fa fa-phone fa-2x" aria-hidden="true" ng-click="call(c.profile.manager.phone)"></i>
+            <i class="fa-color fa fa-comments fa-2x" aria-hidden="true" onclick="openChat(this);" id="{{c.profile.manager.sys_id}}"></i>
+           
+        </div>
+
+    </div>
+	<h3 class="profile-heading">${My Info}</h3>
+  
+	<ul class="info-table">
+		<li ng-if="c.profile.work_email" class="each-user-info">
+			<i class="fa fa-envelope-o col-md-1" aria-hidden="true"></i> <a href="mailto:{{c.profile.work_email}}" class="col-md-10 prof">{{c.profile.work_email}}</a>
+		</li>
+		<li ng-if="c.profile.work_phone">
+			<i class="col-md-1 fa fa-phone" aria-hidden="true"></i> <a class="col-md-10 prof" href="tel:{{c.profile.work_phone}}">{{c.profile.work_phone}}</a>
+		</li>
+		<li ng-if="c.profile.work_mobile">
+			<i class="col-md-1 fa fa-mobile" aria-hidden="true"></i> <a class="col-md-10 prof" href="tel:{{c.profile.work_mobile}}">{{c.profile.work_mobile}}</a>
+		</li>
+	</ul>
+
+
+
+</div>]]></template>
+    </sp_widget>
+</record_update>

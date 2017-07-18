@@ -8,15 +8,15 @@
         <sys_created_on>2017-06-29 17:39:59</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>44248adfdbafb200e6a3bb01ef961994</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>sidemenu</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_ng_template_44248adfdbafb200e6a3bb01ef961994</sys_update_name>
-        <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-29 22:50:40</sys_updated_on>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-07-14 18:24:09</sys_updated_on>
         <template><![CDATA[<span class="sidenav-button"><i ng-click="toggleNav()" class="fa fa-align-left sidenav-button hidden-xs" aria-hidden="true"></i></span>
 
 <div id="cross-portal-side-nav" class="sidenav">
@@ -40,6 +40,19 @@
             <li><a class="nav-content-header" href="/{{::domain['portal.url_suffix']}}">{{::domain.name}} Portal</a></li>
 
             <li class="dropdown-header"> 
+              
+              <a class="nav-content-header" href="#">${Quick Links}</a>
+              <p class="mega-menu-p" ng-if="domain.quick_links.length == 0">
+                ${There are currently no quick links for {{::domain.name }}.}
+              </p>
+
+            <li class="nav-content-item" ng-repeat="quick_link in domain.quick_links">
+              <a ng-click="openQuickLink(domain['portal.url_suffix'], quick_link)">
+
+                <i class="fa fa-link"></i> {{::quick_link.link_name}}</a>
+            </li>
+            <li>
+              
               <a class="nav-content-header" href="#">${Featured Catalog Items}</a>
               <p class="mega-menu-p" ng-if="domain.catalog_items.length == 0">
                 ${There are currently no featured catalog items.}

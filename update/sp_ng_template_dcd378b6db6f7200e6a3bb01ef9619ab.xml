@@ -8,7 +8,7 @@
         <sys_created_on>2017-06-27 22:37:29</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>dcd378b6db6f7200e6a3bb01ef9619ab</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>megamenu</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
@@ -16,7 +16,7 @@
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_ng_template_dcd378b6db6f7200e6a3bb01ef9619ab</sys_update_name>
         <sys_updated_by>frank.schuster</sys_updated_by>
-        <sys_updated_on>2017-06-28 19:59:08</sys_updated_on>
+        <sys_updated_on>2017-07-14 18:06:40</sys_updated_on>
         <template><![CDATA[<ul class="nav navbar-nav">
   <li>
     <a ng-href="/support" class="dropdown-toggle ssp-domain-name" data-toggle="dropdown">
@@ -29,7 +29,7 @@
     </a>
     <ul class="dropdown-menu mega-dropdown-menu hidden-xs">
       <li class="col-sm-3 hidden-xs">
-        <ul>
+        <!--<ul>
           <li class="dropdown-header" style="color: {{domain.primary_color}}">${Popular Items}</li>
           <p class="mega-menu-p" ng-if="domain.popular_items.length == 0">
             ${There are currently no featured catalog items.}
@@ -39,6 +39,17 @@
             <a ng-click="openMenuItem(domain['portal.url_suffix'], 'sc_cat_item', popular_item.sys_id)" ng-if="popular_item.catalogs == domain.catalog">
               <img ng-if="popular_item.picture" ng-src="{{::popular_item.picture}}" style="height:30px; width: auto"/>
               <i ng-if="!popular_item.picture" class="fa fa-shopping-cart"></i> {{::popular_item.name}}</a>
+          </li> 
+        </ul>-->
+        <ul>
+          <li class="dropdown-header" style="color: {{domain.primary_color}}">${Quick Links}</li>
+          <p class="mega-menu-p" ng-if="domain.quick_links.length == 0">
+            ${There are currently no quick links for {{::domain.name }}.}
+          </p>
+
+          <li ng-repeat="quick_link in domain.quick_links">
+            <a ng-click="openQuickLink(domain['portal.url_suffix'], quick_link)">
+              <i class="fa fa-link"></i> {{::quick_link.link_name}}</a>
           </li> 
         </ul>
       </li>
@@ -101,7 +112,7 @@
       <li class="col-sm-3">
         <ul>
           <li class="dropdown-header" style="color: {{domain.primary_color}}">${My Records} <span class="badge badge-record-counter rounded">{{domain.my_records.record_count}}</span></li>
-          <p class="mega-menu-p" ng-if="domain.my_records.length == 0">
+          <p class="mega-menu-p" ng-if="domain.my_records.record_count == 0">
             ${You have no open records.}
           </p>
 

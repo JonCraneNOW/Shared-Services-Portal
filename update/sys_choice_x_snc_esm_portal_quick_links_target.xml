@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="target" table="x_snc_esm_portal_quick_links" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>target</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>_blank (New Tab/Window)</label>
+            <language>en</language>
+            <name>x_snc_esm_portal_quick_links</name>
+            <sequence>1</sequence>
+            <sys_created_by>frank.schuster</sys_created_by>
+            <sys_created_on>2017-07-14 17:11:28</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>394d03c0db80cb00e6a3bb01ef961931</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>frank.schuster</sys_updated_by>
+            <sys_updated_on>2017-07-14 17:11:28</sys_updated_on>
+            <value>_blank</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>target</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>_self (same window)</label>
+            <language>en</language>
+            <name>x_snc_esm_portal_quick_links</name>
+            <sequence>2</sequence>
+            <sys_created_by>frank.schuster</sys_created_by>
+            <sys_created_on>2017-07-14 17:11:46</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>558dcf80db80cb00e6a3bb01ef96194d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>frank.schuster</sys_updated_by>
+            <sys_updated_on>2017-07-14 17:11:46</sys_updated_on>
+            <value>_self</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>target</element>
+            <name>x_snc_esm_portal_quick_links</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>frank.schuster</sys_created_by>
+            <sys_created_on>2017-07-14 17:11:28</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>387dcf80db80cb00e6a3bb01ef961949</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_name>target</sys_name>
+            <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+            <sys_update_name>sys_choice_x_snc_esm_portal_quick_links_target</sys_update_name>
+            <sys_updated_by>frank.schuster</sys_updated_by>
+            <sys_updated_on>2017-07-14 17:11:46</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

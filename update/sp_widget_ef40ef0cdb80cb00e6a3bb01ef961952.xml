@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($window) {
+  /* widget controller */
+  var c = this;
+	
+	console.log(c.data.quickLinks);
+	
+	c.openQuickLink = function(suffix, quickLink) {
+		if(quickLink.type == "sc_cat_item") {
+			$window.open("/"+suffix+"?id=sc_cat_item&sys_id="+quickLink.catalog_item, quickLink.target);
+			//$window.location.href = "/"+suffix+"?id=sc_cat_item&sys_id="+quickLink.sc_cat_item;
+		}
+		if(quickLink.type == "kb_knowledge") {
+			$window.open("/"+suffix+"?id=kb_article&sys_id="+quickLink.kb_article, quickLink.target);
+			//$window.location.href = "/"+suffix+"?id=kb_article&sys_id="+quickLink.kb_article;
+		}
+		if(quickLink.type == "url") {
+			$window.open(quickLink.url, quickLink.target);
+		}
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>quick_links</id>
+        <internal>false</internal>
+        <link/>
+        <name>Quick Links</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	data.quickLinks = [];
+
+	var grQuickLinks = new GlideRecord("x_snc_esm_portal_quick_links");
+	grQuickLinks.addActiveQuery();
+	grQuickLinks.query();
+	while(grQuickLinks.next()) {
+		var quickLink = {};
+		$sp.getRecordValues(quickLink, grQuickLinks, "link_name, type, target, url, catalog_item, kb_article, department.portal.url_suffix");	
+		data.quickLinks.push(quickLink);
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-07-14 18:33:51</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ef40ef0cdb80cb00e6a3bb01ef961952</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>Quick Links</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_widget_ef40ef0cdb80cb00e6a3bb01ef961952</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-07-15 01:00:03</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-primary b">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-link"></i> ${Quick Links}</h3>
+  </div>
+  <div class="panel-body">
+    <ul class="list-unstyled">
+      <li ng-repeat="link in c.data.quickLinks">
+        <a ng-click="c.openQuickLink(link['department.portal.url_suffix'], link)">
+          <i class="fa fa-shopping-cart" ng-if="link.type == 'sc_cat_item'"></i>
+          <i class="fa fa-book" ng-if="link.type == 'kb_knowledge'"></i>
+          <i class="fa fa-world" ng-if="link.type == 'url'"></i>{{::link.link_name}}</a>
+      </li>
+    </ul>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

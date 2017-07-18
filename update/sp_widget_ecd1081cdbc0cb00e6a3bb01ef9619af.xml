@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, spUtil, $rootScope, $location, $timeout) {
+	/* widget controller */
+	var c = this;
+	
+	c.activeTab = "tasks";
+	
+	c.setActiveTab = function(tabName) {
+		//console.log(tabName);
+		c.activeTab = tabName;
+	};
+	
+
+
+	//HR Core Case
+	spUtil.recordWatch($scope, "sn_hr_core_case", "active=true^opened_for="+c.data.userID, function(name, data) {
+		c.data.action = "case_update";
+		c.server.update();
+	});
+
+	//HRIT Operations Case
+	spUtil.recordWatch($scope, "sn_hr_core_case_operations", "active=true^opened_for="+c.data.userID, function(name, data) {
+		c.data.action = "case_update";
+		c.server.update();
+	});
+
+	//HR Payroll Case
+	spUtil.recordWatch($scope, "sn_hr_core_case_payroll", "active=true^opened_for="+c.data.userID, function(name, data) {
+		c.data.action = "case_update";
+		c.server.update();
+	});
+
+	//HR Employee Relations Case
+	spUtil.recordWatch($scope, "sn_hr_core_case_relations", "active=true^opened_for="+c.data.userID, function(name, data) {
+		c.data.action = "case_update";
+		c.server.update();
+	});
+
+	//HR Total Rewards Case
+	spUtil.recordWatch($scope, "sn_hr_core_case_total_rewards", "active=true^opened_for="+c.data.userID, function(name, data) {
+		c.data.action = "case_update";
+		c.server.update();
+	});
+
+	//HR Workforce Administration Case
+	spUtil.recordWatch($scope, "sn_hr_core_case_workforce_admin", "active=true^opened_for="+c.data.userID, function(name, data) {
+		c.data.action = "case_update";
+		c.server.update();
+	});
+
+
+	//Task
+	spUtil.recordWatch($scope, "task", "active=true^assigned_to="+c.data.userID, function(name, data) {
+		c.data.action = "task_update";
+		c.server.update();
+	});
+
+
+	//Approval_update
+	spUtil.recordWatch($scope, "sysapproval_approver", "approver="+c.data.userID, function(name, data) {
+		c.data.action = "approval_update";
+		c.server.update();
+	});
+
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.remove-padding {
+  padding: 0px;
+}
+
+.pill-div {
+  border-right: 1px solid #d7d7d7;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.pill-div.last {
+  border-right:0;
+}
+
+.pill-div:hover {
+  cursor:pointer;
+}
+.panel-danger &gt; .panel-heading{
+ background:$brand-danger; 
+}
+
+.panel, .panel-heading {
+     border-radius: 0px;
+}
+
+.panel-title {
+  font-size:28px;
+  font-weight:100;
+}
+
+.sub_content .panel-heading {
+  display:none;
+}
+
+.sub_content .panel-title {
+  font-size:14px;
+}
+
+.tab-pill {
+  font-family: $myhr-headings-font;
+  font-size: 16px;
+  font-weight: 100;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  color: #2e2e2e;
+  &amp;.active .my_tasks, &amp;.active .my_classes, &amp;.active .my_approvals {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom:20px;
+    color: $brand-danger;
+    border-bottom: 3px solid $brand-danger;
+  }
+  .tab-contents {
+    padding-top: 25px;
+    .header {
+      font-size: 32px;
+      font-weight: 300;
+      color: #3b3b3b;
+    }
+  }
+}
+.tab-pill.active .badge {
+    border-bottom:0;
+}
+
+.tab-contents .b {
+  border:0;
+}
+
+/* Tabs and Badges */
+.hrbadge .badge {
+  background-color:#f7f7f7;
+  padding:20px 27px;
+  margin-bottom:20px;
+  color:#696969;
+  font-size:3.35em;
+  border-radius:80px;
+  font-weight:100;
+}
+
+.b, .panel-heading {
+  border-radius:0;
+  border-color: #e6e8ea;
+}
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>my_stuff</id>
+        <internal>false</internal>
+        <link/>
+        <name>My Stuff</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	data.userID = gs.getUserID();
+
+	var domains = new PortalDomainConfig().getAllPortals();
+
+	for(var i=0; i < domains.length; i++) {
+		$sp.log(domains[i].sys_id);
+	}
+
+	function getRecordCount() {
+		
+		
+		//get the count first (limit will manipulate the actual number)
+		var grTableRecCount = new GlideAggregate(table);
+		grTableRecCount.addEncodedQuery(conditions);
+		grTableRecCount.addAggregate('COUNT');
+		grTableRecCount.query();
+		if (grTableRecCount.next())  {
+			records.record_count = grTableRecCount.getAggregate('COUNT');
+		}
+	}
+
+
+
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>frank.schuster</sys_created_by>
+        <sys_created_on>2017-07-14 21:00:17</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ecd1081cdbc0cb00e6a3bb01ef9619af</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>My Stuff</sys_name>
+        <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
+        <sys_update_name>sp_widget_ecd1081cdbc0cb00e6a3bb01ef9619af</sys_update_name>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-07-15 01:06:06</sys_updated_on>
+        <template><![CDATA[<div class="col-md-12">
+
+  <!-- Tabs -->
+  <div class="tab-part col-md-12 ">
+    <div class="col-md-12 remove-padding">
+      <div class="col-md-6 pill-div text-center">
+        <a ng-click="c.setActiveTab('tasks')" ng-class="{'active' : c.activeTab == 'tasks'}" class=" text-center tab-pill">
+          <div class="badge">{{c.data.taskRowCount}}</div>
+          <div class="my_tasks">
+            ${myhr_my_tasks}
+          </div>
+        </a>
+      </div>
+      <div class="pill-div last col-md-6 text-center">
+        <a ng-click="c.setActiveTab('cases')" ng-class="{'active' : c.activeTab == 'cases'}" class=" text-center tab-pill">
+          <div class="badge">{{c.data.caseRowCount}}</div>
+          <div class="my_classes">
+            ${myhr_my_cases}
+          </div>
+        </a>
+      </div>
+      <!--<div class="pill-div last col-md-4 text-center">
+        <a ng-click="c.setActiveTab('approvals')" ng-class="{'active' : c.activeTab == 'approvals'}" class=" text-center tab-pill">
+          <div class="badge">{{c.data.approvalRowCount}}</div>
+          <div class="my_approvals">
+            ${myhr_my_approvals}
+          </div>
+        </a>
+      </div>-->
+    </div>
+
+    <!-- Tab Content -->
+    <div class="col-md-12 tab-contents" ng-show="c.activeTab == 'tasks'">
+      <div class="panel panel- b">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            ${myhr_my_tasks}
+          </h4>
+        </div>
+        <div class="panel-body" ng-if="c.data.taskRowCount == 0">
+          ${myhr_no_open_tasks}
+        </div>
+      </div>
+
+      <div ng-if="data.myTaskTableWidget && !data.task_invalid_table" class="sub_content">
+        <sp-widget widget="data.myTaskTableWidget"></sp-widget>
+      </div>
+    </div>
+
+    <div class="col-md-12 tab-contents" ng-show="c.activeTab == 'cases'">
+      <div class="panel panel- b">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            ${myhr_my_cases}
+          </h4>
+        </div>
+        <div class="panel-body" ng-if="c.data.caseRowCount == 0">
+          ${myhr_no_open_cases}
+        </div>
+        <div ng-if="data.hrCaseTableWidget && !data.case_invalid_table" class="sub_content">
+          <sp-widget widget="data.hrCaseTableWidget"></sp-widget>
+        </div>
+      </div>
+    </div>
+    
+    <!--<div class="col-md-12 tab-contents" ng-show="c.activeTab == 'approvals'">
+      <div class="panel panel- b">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            ${myhr_my_approvals}
+          </h4>
+        </div>
+        <div class="panel-body" ng-if="c.data.approvalRowCount == 0">
+          ${myhr_no_open_approvals}
+        </div>
+        <div ng-if="data.hrCaseTableWidget && !data.case_invalid_table" class="sub_content">
+          <widget id="hri_approvals"></widget>
+        </div>
+      </div>
+    </div>-->
+
+  </div>
+
+]]></template>
+    </sp_widget>
+</record_update>

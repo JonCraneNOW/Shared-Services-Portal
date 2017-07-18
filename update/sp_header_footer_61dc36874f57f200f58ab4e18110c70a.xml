@@ -3,15 +3,15 @@
     <sp_header_footer action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function ($rootScope, $window, $scope, spUtil, cabrillo, $timeout, CrossPortalHeaderUtils) {
 	var c = this;
-	
+
 	c.data.mobile = {
 		isMobileSize : CrossPortalHeaderUtils.isMobileSize(),
 		isMobileDevice: CrossPortalHeaderUtils.isMobileDevice(),
 		bootstrapSize : CrossPortalHeaderUtils.bootstrapSize
 	}
 
-	console.log(c.data);
-	
+	//console.log(c.data);
+
 	$scope.userID = $scope.user.sys_id;
 
 	if (cabrillo.isNative())
@@ -67,14 +67,6 @@
 		document.getElementById("cross-portal-side-nav").style.width = "0";
 	}
 
-	$scope.openMenuItem = function(suffix, page, item) {
-		if(page == "kb_category") {
-			$window.location.href = "/"+suffix+"?id="+page+"&kb_category="+item;
-		} else {
-			$window.location.href = "/"+suffix+"?id="+page+"&sys_id="+item;
-		}
-
-	};
 
 	$scope.toggleNav = function() {
 		if (navClosed) {
@@ -102,6 +94,20 @@
 		}
 	};
 
+	$scope.openQuickLink = function(suffix, quickLink) {
+		if(quickLink.type == "sc_cat_item") {
+			$window.open("/"+suffix+"?id=sc_cat_item&sys_id="+quickLink.sc_cat_item, quickLink.target);
+			//$window.location.href = "/"+suffix+"?id=sc_cat_item&sys_id="+quickLink.sc_cat_item;
+		}
+		if(quickLink.type == "kb_knowledge") {
+			$window.open("/"+suffix+"?id=kb_article&sys_id="+quickLink.kb_article, quickLink.target);
+			//$window.location.href = "/"+suffix+"?id=kb_article&sys_id="+quickLink.kb_article;
+		}
+		if(quickLink.type == "url") {
+			$window.open(quickLink.url, quickLink.target);
+		}
+	};
+
 	$scope.openRecord = function(suffix, portalPage, tableName, recordId) {
 		$window.location.href = "/"+suffix+"?id="+portalPage+"&table="+tableName+"&sys_id="+recordId;
 	};
@@ -113,7 +119,7 @@
 			$window.location.href = "/"+suffix+"?id="+portalPage+"&table=sn_customerservice_case&view=csp";
 		}
 	};
-	
+
 	getMenuType = function(style, size) {
 		if (size == 'xs')
 			return 'megamenu';
@@ -123,7 +129,7 @@
 
 		return style + '';
 	}
-	
+
 	c.data.menuType = getMenuType(c.data.menuStyle, c.data.mobile.bootstrapSize);
 
 }]]></client_script>
@@ -366,15 +372,15 @@ body {
         <sys_created_on>2017-06-16 16:54:38</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>61dc36874f57f200f58ab4e18110c70a</sys_id>
-        <sys_mod_count>135</sys_mod_count>
+        <sys_mod_count>139</sys_mod_count>
         <sys_name>Cross Portal Header</sys_name>
         <sys_package display_value="Shared Services Portal" source="x_snc_esm_portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Shared Services Portal">74c1fa4f4f17f200f58ab4e18110c7f4</sys_scope>
         <sys_update_name>sp_header_footer_61dc36874f57f200f58ab4e18110c70a</sys_update_name>
-        <sys_updated_by>jc</sys_updated_by>
-        <sys_updated_on>2017-06-30 19:39:23</sys_updated_on>
+        <sys_updated_by>frank.schuster</sys_updated_by>
+        <sys_updated_on>2017-07-14 18:01:59</sys_updated_on>
         <template><![CDATA[<div class="announcement" ng-if="c.data.announcementWidget"> 
   <sp-widget widget="c.data.announcementWidget"></sp-widget>
 </div>
